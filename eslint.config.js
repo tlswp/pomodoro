@@ -57,7 +57,6 @@ export default [
       'max-len': ['warn', { code: 100 }],
       quotes: ['error', 'single'],
       semi: ['error', 'always'],
-      indent: ['error', 2, { SwitchCase: 1 }],
 
       // TypeScript-specific rules
       '@typescript-eslint/no-unused-vars': [
