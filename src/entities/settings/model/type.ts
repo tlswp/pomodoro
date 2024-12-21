@@ -1,3 +1,5 @@
+import type { ThemePresets } from '@/shared/config/theme';
+
 export enum TimerPresets {
   CLASSIC = 'CLASSIC',
   DEEP_FOCUS = 'DEEP_FOCUS',
@@ -30,14 +32,6 @@ export interface ISoundSettings {
   enabled: boolean;
   click: ISoundTypeSettings;
   notification: ISoundTypeSettings;
-}
-
-export enum ThemePresets {
-  MINIMALIST = 'MINIMALIST',
-  POMODORO = 'POMODORO',
-  RETRO = 'RETRO',
-  NEON_LIGHTS = 'NEON_LIGHTS',
-  PLAYFUL = 'PLAYFUL',
 }
 
 export interface IThemeSettings {

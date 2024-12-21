@@ -1,0 +1,7 @@
+export enum ThemePresets {
+  MINIMALIST = 'MINIMALIST',
+  POMODORO = 'POMODORO',
+  RETRO = 'RETRO',
+  NEON_LIGHTS = 'NEON_LIGHTS',
+  PLAYFUL = 'PLAYFUL',
+}

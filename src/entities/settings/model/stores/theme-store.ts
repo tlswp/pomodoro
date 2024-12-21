@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 
-import { type IThemeSettings, ThemePresets } from '../type';
+import { ThemePresets } from '@/shared/config/theme';
+
+import { type IThemeSettings } from '../type';
 
 interface IThemeSettingsStore {
   themeSettings: IThemeSettings;

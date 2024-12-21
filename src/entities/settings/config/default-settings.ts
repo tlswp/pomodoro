@@ -1,4 +1,6 @@
-import { ThemePresets, TimerPresets } from '../model';
+import { ThemePresets } from '@/shared/config/theme';
+
+import { TimerPresets } from '../model';
 import { TimerPresetsConfig } from './timer-presets';
 
 export const defaultSettings = {
