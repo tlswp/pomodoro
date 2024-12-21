@@ -1,3 +1,5 @@
+import { ThemesSettingsForm } from '@/features/themes-settings-form';
+
 import { SettingsTab, useSettingsDialogStore } from '../model';
 import { TabItem } from './tab-item';
 
@@ -11,7 +13,11 @@ const Tabs = () => {
     case SettingsTab.SOUND:
       return <TabItem>3</TabItem>;
     case SettingsTab.THEME:
-      return <TabItem>4</TabItem>;
+      return (
+        <TabItem>
+          <ThemesSettingsForm />
+        </TabItem>
+      );
     case SettingsTab.DATA_PRIVACY:
       return <TabItem>5</TabItem>;
 

@@ -1,11 +1,5 @@
 import type { ThemePresets } from '@/shared/config/theme';
-
-export enum TimerPresets {
-  CLASSIC = 'CLASSIC',
-  DEEP_FOCUS = 'DEEP_FOCUS',
-  QUICK_START = 'QUICK_START',
-  CUSTOM = 'CUSTOM',
-}
+import type { TimerPresets } from '@/shared/config/timer-presets';
 
 export interface ITimerSettings {
   session: number;

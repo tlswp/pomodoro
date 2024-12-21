@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 
-import type { ITimerSettings } from '../type';
-import { TimerPresets } from '../type';
+import { TimerPresets } from '@/shared/config/timer-presets';
+
+import { type ITimerSettings } from '../type';
 
 interface ITimerSettingsStore {
   timerSettings: ITimerSettings;

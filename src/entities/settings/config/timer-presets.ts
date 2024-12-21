@@ -1,5 +1,6 @@
+import { TimerPresets } from '@/shared/config/timer-presets';
+
 import type { ITimerSettings } from '../model';
-import { TimerPresets } from '../model';
 
 export const TimerPresetsConfig: Record<
   TimerPresets,

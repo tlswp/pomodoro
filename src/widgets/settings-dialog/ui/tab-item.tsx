@@ -12,7 +12,7 @@ export const TabItem: React.FC<ITabItemProps> = ({ children }) => {
   return (
     <div className="h-full w-full pb-4">
       <div className="w-full">{tabsConfigObject[selectedTab].title}</div>
-      <ScrollArea className="h-full w-full">{children}</ScrollArea>
+      <ScrollArea className="mt-4 h-full w-full">{children}</ScrollArea>
     </div>
   );
 };

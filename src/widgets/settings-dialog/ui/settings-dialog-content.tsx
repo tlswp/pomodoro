@@ -9,7 +9,7 @@ const SettingsDialogContent = () => {
     <SidebarProvider>
       <DialogContent
         className="flex h-[calc(100svh-theme(spacing.4))] min-w-[500px]
-          max-w-[980px] overflow-hidden lg:max-h-[calc(50svh-theme(spacing.4))]"
+          max-w-[880px] overflow-hidden lg:max-h-[calc(50svh-theme(spacing.4))]"
       >
         <SettingsSidebar />
         <div className="ml-[200px] w-full">
