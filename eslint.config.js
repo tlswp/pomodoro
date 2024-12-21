@@ -54,7 +54,7 @@ export default [
     rules: {
       // Common formatting rules
       'no-console': 'warn',
-      'max-len': ['warn', { code: 100 }],
+      'max-len': ['warn', { code: 120 }],
       quotes: ['error', 'single'],
       semi: ['error', 'always'],
 
