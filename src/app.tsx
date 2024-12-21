@@ -1,5 +1,11 @@
+import { SettingsDialog } from './widgets/settings-dialog';
+
 const App = () => {
-  return <></>;
+  return (
+    <>
+      <SettingsDialog />
+    </>
+  );
 };
 
 export default App;
