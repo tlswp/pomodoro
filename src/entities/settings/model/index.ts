@@ -1,4 +1,3 @@
-export { TimerPresets } from '../../../shared/config/timer-presets';
 export { resetSettings } from './reset-settings';
 export { useNotifySettingsStore } from './stores/notification-store';
 export { useSoundSettingsStore } from './stores/sound-store';
