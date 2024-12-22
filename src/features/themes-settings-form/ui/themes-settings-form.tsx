@@ -40,7 +40,8 @@ const ThemesSettingsForm = () => {
           name="mode"
           render={({ field }) => (
             <FormItem
-              className="flex flex-row items-center justify-between rounded-lg"
+              className="flex flex-col rounded-lg md:flex-row md:items-center
+                md:justify-between"
             >
               <div className="space-y-0.5">
                 <FormLabel>Select Theme Mode</FormLabel>

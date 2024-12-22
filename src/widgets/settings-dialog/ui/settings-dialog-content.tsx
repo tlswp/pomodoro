@@ -8,12 +8,13 @@ const SettingsDialogContent = () => {
   return (
     <SidebarProvider>
       <DialogContent
-        className="flex h-[600px] max-h-[calc(100svh-theme(spacing.4))]
-          min-h-[calc(50svh-theme(spacing.4))] min-w-[500px] max-w-[880px]
-          overflow-hidden"
+        className="flex h-full min-h-[calc(50svh-theme(spacing.4))]
+          max-w-[880px] overflow-hidden rounded-none md:h-[600px]
+          md:max-h-[calc(100svh-theme(spacing.4))] md:min-w-[500px]
+          md:rounded-xl"
       >
         <SettingsSidebar />
-        <div className="ml-[200px] w-full">
+        <div className="w-full md:ml-[200px]">
           <Tabs />
         </div>
       </DialogContent>

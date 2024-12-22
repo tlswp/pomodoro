@@ -44,7 +44,8 @@ const NotifySettingsForm = () => {
           name="browser"
           render={({ field }) => (
             <FormItem
-              className="flex flex-row items-center justify-between rounded-lg"
+              className="flex flex-row items-center justify-between gap-5
+                rounded-lg"
             >
               <div className="space-y-0.5">
                 <FormLabel>Browser Notification</FormLabel>

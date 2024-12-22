@@ -47,7 +47,8 @@ const SoundSettingsForm = () => {
           name="enabled"
           render={({ field }) => (
             <FormItem
-              className="flex flex-row items-center justify-between rounded-lg"
+              className="flex flex-row items-center justify-between gap-5
+                rounded-lg"
             >
               <div className="space-y-0.5">
                 <FormLabel>Enable Sounds</FormLabel>
@@ -69,7 +70,8 @@ const SoundSettingsForm = () => {
           name="click.enabled"
           render={({ field }) => (
             <FormItem
-              className="flex flex-row items-center justify-between rounded-lg"
+              className="flex flex-row items-center justify-between gap-5
+                rounded-lg"
             >
               <div className="space-y-0.5">
                 <FormLabel>Click</FormLabel>
@@ -105,7 +107,8 @@ const SoundSettingsForm = () => {
           name="notification.enabled"
           render={({ field }) => (
             <FormItem
-              className="flex flex-row items-center justify-between rounded-lg"
+              className="flex flex-row items-center justify-between gap-5
+                rounded-lg"
             >
               <div className="space-y-0.5">
                 <FormLabel>Notification</FormLabel>

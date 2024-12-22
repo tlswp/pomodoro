@@ -12,6 +12,7 @@ import {
   FormItem,
   FormLabel,
 } from '@/shared/ui/form';
+import { ScrollArea, ScrollBar } from '@/shared/ui/scroll-area';
 import { Switch } from '@/shared/ui/switch';
 import { Tabs, TabsList, TabsTrigger } from '@/shared/ui/tabs';
 
@@ -44,7 +45,7 @@ const TimerSettingsForm = () => {
           control={form.control}
           name="preset"
           render={({ field }) => (
-            <FormItem className="rounded-lg">
+            <FormItem className="grid rounded-lg">
               <div className="flex flex-row items-center justify-between">
                 <div className="space-y-0.5">
                   <FormLabel>Preset</FormLabel>
@@ -56,6 +57,7 @@ const TimerSettingsForm = () => {
               </div>
               <FormControl>
                 <Tabs
+                  asChild
                   value={field.value}
                   onValueChange={(value) => {
                     field.onChange(value);
@@ -66,15 +68,18 @@ const TimerSettingsForm = () => {
                     });
                   }}
                 >
-                  <TabsList>
-                    {Object.entries(timerPresetsLabels).map(
-                      ([preset, label]) => (
-                        <TabsTrigger key={preset} value={preset}>
-                          {label}
-                        </TabsTrigger>
-                      )
-                    )}
-                  </TabsList>
+                  <ScrollArea className="w-full rounded-lg">
+                    <ScrollBar orientation="horizontal" className="hidden" />
+                    <TabsList>
+                      {Object.entries(timerPresetsLabels).map(
+                        ([preset, label]) => (
+                          <TabsTrigger key={preset} value={preset}>
+                            {label}
+                          </TabsTrigger>
+                        )
+                      )}
+                    </TabsList>
+                  </ScrollArea>
                 </Tabs>
               </FormControl>
             </FormItem>
@@ -85,7 +90,8 @@ const TimerSettingsForm = () => {
           name="sessionCount"
           render={({ field }) => (
             <FormItem
-              className="flex flex-row items-center justify-between rounded-lg"
+              className="flex flex-col justify-between rounded-lg md:flex-row
+                md:items-center"
             >
               <div className="space-y-0.5">
                 <FormLabel>Session Count</FormLabel>
@@ -110,7 +116,8 @@ const TimerSettingsForm = () => {
           name="session"
           render={({ field }) => (
             <FormItem
-              className="flex flex-row items-center justify-between rounded-lg"
+              className="flex flex-col justify-between rounded-lg md:flex-row
+                md:items-center"
             >
               <div className="space-y-0.5">
                 <FormLabel>Focus Time</FormLabel>
@@ -135,7 +142,8 @@ const TimerSettingsForm = () => {
           name="shortBreak"
           render={({ field }) => (
             <FormItem
-              className="flex flex-row items-center justify-between rounded-lg"
+              className="flex flex-col justify-between rounded-lg md:flex-row
+                md:items-center"
             >
               <div className="space-y-0.5">
                 <FormLabel>Short Break Time</FormLabel>
@@ -160,7 +168,8 @@ const TimerSettingsForm = () => {
           name="longBreak"
           render={({ field }) => (
             <FormItem
-              className="flex flex-row items-center justify-between rounded-lg"
+              className="flex flex-col justify-between rounded-lg md:flex-row
+                md:items-center"
             >
               <div className="space-y-0.5">
                 <FormLabel>Long Break Time</FormLabel>
@@ -185,7 +194,8 @@ const TimerSettingsForm = () => {
           name="autoPlaySession"
           render={({ field }) => (
             <FormItem
-              className="flex flex-row items-center justify-between rounded-lg"
+              className="flex flex-row items-center justify-between gap-5
+                rounded-lg"
             >
               <div className="space-y-0.5">
                 <FormLabel>Auto Play Session</FormLabel>
@@ -208,7 +218,8 @@ const TimerSettingsForm = () => {
           name="autoPlayBreak"
           render={({ field }) => (
             <FormItem
-              className="flex flex-row items-center justify-between rounded-lg"
+              className="flex flex-row items-center justify-between gap-5
+                rounded-lg"
             >
               <div className="space-y-0.5">
                 <FormLabel>Auto Play Break</FormLabel>
