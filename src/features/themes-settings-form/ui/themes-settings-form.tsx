@@ -34,11 +34,7 @@ const ThemesSettingsForm = () => {
 
   return (
     <Form {...form}>
-      <form
-        // onBlur={form.handleSubmit(submitHandler)}
-        // onChange={form.handleSubmit(submitHandler)}
-        className="grid gap-4"
-      >
+      <form className="grid gap-4">
         <FormField
           control={form.control}
           name="mode"

@@ -1,3 +1,4 @@
+import { NotifySettingsForm } from '@/features/notify-settings-form';
 import { SoundSettingsForm } from '@/features/sound-settings-form';
 import { ThemesSettingsForm } from '@/features/themes-settings-form';
 import { TimerSettingsForm } from '@/features/timer-settings-form';
@@ -15,7 +16,11 @@ const Tabs = () => {
         </TabItem>
       );
     case SettingsTab.NOTIFICATION:
-      return <TabItem>2</TabItem>;
+      return (
+        <TabItem>
+          <NotifySettingsForm />
+        </TabItem>
+      );
     case SettingsTab.SOUND:
       return (
         <TabItem>

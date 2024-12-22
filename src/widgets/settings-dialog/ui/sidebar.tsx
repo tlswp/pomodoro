@@ -24,10 +24,7 @@ export function SettingsSidebar() {
               {tabsConfig.map((item) => (
                 <SidebarMenuItem key={item.key}>
                   <SidebarMenuButton
-                    disabled={
-                      item.key === SettingsTab.DATA_PRIVACY ||
-                      item.key === SettingsTab.NOTIFICATION
-                    }
+                    disabled={item.key === SettingsTab.DATA_PRIVACY}
                     isActive={selectedTab === item.key}
                     onClick={() => setSelectedTab(item.key)}
                   >
