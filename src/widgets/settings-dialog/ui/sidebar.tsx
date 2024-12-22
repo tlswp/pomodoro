@@ -10,7 +10,7 @@ import {
 } from '@/shared/ui/sidebar';
 
 import { tabsConfig } from '../config';
-import { useSettingsDialogStore } from '../model';
+import { SettingsTab, useSettingsDialogStore } from '../model';
 
 export function SettingsSidebar() {
   const { selectedTab, setSelectedTab } = useSettingsDialogStore();
@@ -24,6 +24,10 @@ export function SettingsSidebar() {
               {tabsConfig.map((item) => (
                 <SidebarMenuItem key={item.key}>
                   <SidebarMenuButton
+                    disabled={
+                      item.key === SettingsTab.DATA_PRIVACY ||
+                      item.key === SettingsTab.NOTIFICATION
+                    }
                     isActive={selectedTab === item.key}
                     onClick={() => setSelectedTab(item.key)}
                   >

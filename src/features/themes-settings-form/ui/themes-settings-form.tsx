@@ -1,5 +1,5 @@
 import { useThemeSettingsStore } from '@/entities/settings/model';
-import type { ThemePresets } from '@/shared/config/theme';
+import { themeClasses, type ThemePresets } from '@/shared/config/theme';
 
 import { themePreviewList } from '../config';
 import { ThemeItem } from './theme-item';
@@ -9,6 +9,7 @@ const ThemesSettingsForm = () => {
 
   const handleThemeChange = (theme: ThemePresets) => {
     updateThemeSettings({ theme });
+    document.body.className = themeClasses[theme];
   };
   return (
     <div>
