@@ -4,3 +4,10 @@ export enum TimerPresets {
   QUICK_START = 'QUICK_START',
   CUSTOM = 'CUSTOM',
 }
+
+export const timerPresetsLabels = {
+  [TimerPresets.CLASSIC]: 'Classic',
+  [TimerPresets.DEEP_FOCUS]: 'Deep Focus',
+  [TimerPresets.QUICK_START]: 'Quick Start',
+  [TimerPresets.CUSTOM]: 'Custom',
+};
