@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 import { ThemePresets } from '@/shared/config/theme';
+import { ThemeMode } from '@/shared/config/theme-mode';
 
 import { type IThemeSettings } from '../type';
 
@@ -15,6 +16,7 @@ export const useThemeSettingsStore = create<IThemeSettingsStore>()(
     (set) => ({
       themeSettings: {
         theme: ThemePresets.MINIMALIST,
+        mode: ThemeMode.LIGHT,
       },
       updateThemeSettings: (settings) =>
         set((state) => ({

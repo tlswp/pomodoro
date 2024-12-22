@@ -1,4 +1,5 @@
 import { ThemePresets } from '@/shared/config/theme';
+import { ThemeMode } from '@/shared/config/theme-mode';
 import { TimerPresets } from '@/shared/config/timer-presets';
 
 import { TimerPresetsConfig } from './timer-presets';
@@ -16,5 +17,6 @@ export const defaultSettings = {
   },
   themeSettings: {
     theme: ThemePresets.MINIMALIST,
+    mode: ThemeMode.SYSTEM,
   },
 };

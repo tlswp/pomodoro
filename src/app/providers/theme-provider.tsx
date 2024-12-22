@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 
 import { useThemeSettingsStore } from '@/entities/settings';
 import { themeClasses } from '@/shared/config/theme';
+import { ThemeMode, themeModeConfig } from '@/shared/config/theme-mode';
+import { getSystemTheme } from '@/shared/lib/get-system-theme';
 
 interface ThemeProviderProps {
   children?: React.ReactNode;
@@ -24,6 +26,14 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     const possibleThemes = Object.values(themeClasses);
     possibleThemes.forEach((t) => document.body.classList.remove(t));
     document.body.classList.add(themeClasses[themeSettings.theme]);
+    Object.values(themeModeConfig).forEach((t) =>
+      document.body.classList.remove(t)
+    );
+    if (themeSettings.mode === ThemeMode.SYSTEM) {
+      document.body.classList.add(themeModeConfig[getSystemTheme()]);
+    } else {
+      document.body.classList.add(themeModeConfig[themeSettings.mode]);
+    }
   }, [themeSettings]);
 
   return <>{children}</>;

@@ -24,7 +24,7 @@ const SoundSelectItem: React.FC<SoundSelectItemProps> = ({
         duration-200 hover:bg-accent hover:text-accent-foreground
         active:scale-95 disabled:cursor-not-allowed disabled:border-transparent
         disabled:bg-muted disabled:active:scale-100
-        data-[state=on]:border-muted-foreground
+        data-[state=on]:border-primary
         disabled:data-[state=on]:border-transparent"
     >
       {label}

@@ -1,10 +1,11 @@
+import { RadioGroupItem } from '@radix-ui/react-radio-group';
+
 import type { ThemePresets } from '@/shared/config/theme';
 import { cn } from '@/shared/lib/utils';
 
 interface IThemeItemProps {
   label: string;
   value: ThemePresets;
-  onClick: (value: ThemePresets) => void;
   selected: boolean;
   colors: {
     border: string;
@@ -16,12 +17,11 @@ interface IThemeItemProps {
 export const ThemeItem: React.FC<IThemeItemProps> = ({
   label,
   value,
-  onClick,
   selected,
   colors,
 }) => {
   return (
-    <button onClick={() => onClick(value)}>
+    <RadioGroupItem value={value}>
       <div
         className={cn(
           'size-32 rounded-2xl border-2 duration-200',
@@ -39,6 +39,6 @@ export const ThemeItem: React.FC<IThemeItemProps> = ({
         />
       </div>
       <div className="mt-2 text-sm">{label}</div>
-    </button>
+    </RadioGroupItem>
   );
 };

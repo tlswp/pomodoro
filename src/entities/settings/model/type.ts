@@ -1,4 +1,5 @@
 import type { ThemePresets } from '@/shared/config/theme';
+import type { ThemeMode } from '@/shared/config/theme-mode';
 import type { TimerPresets } from '@/shared/config/timer-presets';
 
 export interface ITimerSettings {
@@ -30,4 +31,5 @@ export interface ISoundSettings {
 
 export interface IThemeSettings {
   theme: ThemePresets;
+  mode: ThemeMode;
 }
