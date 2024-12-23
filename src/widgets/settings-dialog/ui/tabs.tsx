@@ -1,9 +1,8 @@
-import { NotifySettingsForm } from '@/features/notify-settings-form';
-import { SoundSettingsForm } from '@/features/sound-settings-form';
-import { ThemesSettingsForm } from '@/features/themes-settings-form';
-import { TimerSettingsForm } from '@/features/timer-settings-form';
-
 import { SettingsTab, useSettingsDialogStore } from '../model';
+import { NotifySettingsForm } from './forms/notify-settings-form';
+import { SoundSettingsForm } from './forms/sound-settings-form';
+import { ThemesSettingsForm } from './forms/themes-settings-form';
+import { TimerSettingsForm } from './forms/timer-settings-form';
 import { TabItem } from './tab-item';
 
 const Tabs = () => {

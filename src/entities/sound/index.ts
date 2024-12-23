@@ -1,1 +1,1 @@
-export * from './ui';
+export { SoundSelect } from './ui';

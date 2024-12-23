@@ -1,1 +1,1 @@
-export * from './ui';
+export { SettingsDialog } from './ui';

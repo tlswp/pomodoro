@@ -1,11 +1,11 @@
 import { ThemeProvider } from './app/providers/theme-provider';
-import { SettingsDialog } from './widgets/settings-dialog';
+import { MainPage } from './pages/main';
 
 const App = () => {
   return (
     <>
       <ThemeProvider />
-      <SettingsDialog />
+      <MainPage />
     </>
   );
 };
