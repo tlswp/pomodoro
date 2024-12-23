@@ -19,20 +19,42 @@ interface ThemeProviderProps {
  *
  * @param {React.ReactNode} [children] - Optional child components to render inside the provider.
  */
+
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const { themeSettings } = useThemeSettingsStore();
 
   useEffect(() => {
-    const possibleThemes = Object.values(themeClasses);
-    possibleThemes.forEach((t) => document.body.classList.remove(t));
-    document.body.classList.add(themeClasses[themeSettings.theme]);
-    Object.values(themeModeConfig).forEach((t) =>
-      document.body.classList.remove(t)
-    );
+    const applyTheme = () => {
+      const possibleThemes = Object.values(themeClasses);
+      possibleThemes.forEach((t) => document.body.classList.remove(t));
+
+      document.body.classList.add(themeClasses[themeSettings.theme]);
+
+      Object.values(themeModeConfig).forEach((modeClass) =>
+        document.body.classList.remove(modeClass)
+      );
+
+      if (themeSettings.mode === ThemeMode.SYSTEM) {
+        document.body.classList.add(themeModeConfig[getSystemTheme()]);
+      } else {
+        document.body.classList.add(themeModeConfig[themeSettings.mode]);
+      }
+    };
+
+    applyTheme();
+
     if (themeSettings.mode === ThemeMode.SYSTEM) {
-      document.body.classList.add(themeModeConfig[getSystemTheme()]);
-    } else {
-      document.body.classList.add(themeModeConfig[themeSettings.mode]);
+      const darkMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      const handleSystemThemeChange = () => {
+        applyTheme();
+      };
+
+      darkMediaQuery.addEventListener('change', handleSystemThemeChange);
+
+      return () => {
+        darkMediaQuery.removeEventListener('change', handleSystemThemeChange);
+      };
     }
   }, [themeSettings]);
 
