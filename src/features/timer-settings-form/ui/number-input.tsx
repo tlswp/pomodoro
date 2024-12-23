@@ -12,6 +12,7 @@ interface INumberInputProps {
   step?: number;
   value: number;
   onChange: (value: number) => void;
+  normalizeFirstStep?: boolean;
 }
 
 const NumberInput: React.FC<INumberInputProps> = ({
@@ -20,12 +21,15 @@ const NumberInput: React.FC<INumberInputProps> = ({
   step = 1,
   value,
   onChange,
+  normalizeFirstStep = true,
 }) => {
   const [innerValue, setInnerValue] = useState(value.toString());
 
   const increment = useCallback(() => {
-    onChange(formatNumber(value + step, min, max));
-  }, [onChange, step, value, min, max]);
+    const decrementFirstStep =
+      normalizeFirstStep && value === min && step !== 1 ? 1 : 0;
+    onChange(formatNumber(value + step - decrementFirstStep, min, max));
+  }, [onChange, step, value, min, max, normalizeFirstStep]);
 
   const decrement = useCallback(() => {
     onChange(formatNumber(value - step, min, max));

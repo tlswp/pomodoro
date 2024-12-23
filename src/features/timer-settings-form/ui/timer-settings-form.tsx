@@ -128,6 +128,7 @@ const TimerSettingsForm = () => {
               </div>
               <FormControl>
                 <NumberInput
+                  step={5}
                   min={formLimits.sessionLength.min}
                   max={formLimits.sessionLength.max}
                   value={field.value}
@@ -154,6 +155,7 @@ const TimerSettingsForm = () => {
               </div>
               <FormControl>
                 <NumberInput
+                  step={5}
                   min={formLimits.breakLength.min}
                   max={formLimits.breakLength.max}
                   value={field.value}
@@ -180,6 +182,7 @@ const TimerSettingsForm = () => {
               </div>
               <FormControl>
                 <NumberInput
+                  step={5}
                   min={formLimits.longBreakLength.min}
                   max={formLimits.longBreakLength.max}
                   value={field.value}
