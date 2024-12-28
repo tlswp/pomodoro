@@ -15,7 +15,7 @@ import { SettingsTab, useSettingsDialogStore } from '../model';
 export function SettingsSidebar() {
   const { selectedTab, setSelectedTab } = useSettingsDialogStore();
   return (
-    <Sidebar className="h-full w-[224px]">
+    <Sidebar collapsible="icon" className="h-full">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Settings</SidebarGroupLabel>
