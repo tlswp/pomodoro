@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import type { ITimerSettings } from '@/entities/settings';
@@ -17,19 +18,28 @@ import { Switch } from '@/shared/ui/switch';
 import { Tabs, TabsList, TabsTrigger } from '@/shared/ui/tabs';
 
 import { formLimits } from '../config';
+import { formatToMinutes } from '../lib/format-to-minutes';
+import { formatToMinutesByKey } from '../lib/format-to-minutes-by-key';
+import { formatToMs } from '../lib/format-to-ms';
 import NumberInput from './number-input';
 
 const TimerSettingsForm = () => {
   const { timerSettings, updateTimerSettings } = useTimerSettingsStore();
 
   const form = useForm<ITimerSettings>({
-    defaultValues: timerSettings,
+    defaultValues: formatToMinutes({ ...timerSettings }),
     mode: 'onBlur',
   });
 
-  const submitHandler = (data: ITimerSettings) => {
-    updateTimerSettings(data);
-  };
+  useEffect(() => {
+    const { unsubscribe } = form.watch((data) => {
+      updateTimerSettings(
+        formatToMs({ ...formatToMinutes(timerSettings), ...data })
+      );
+    });
+
+    return () => unsubscribe();
+  }, [form, updateTimerSettings, timerSettings]);
 
   const presetMiddleware =
     <T,>(f: (data: T) => void) =>
@@ -40,7 +50,7 @@ const TimerSettingsForm = () => {
 
   return (
     <Form {...form}>
-      <form onBlur={form.handleSubmit(submitHandler)} className="grid gap-4">
+      <form className="grid gap-4">
         <FormField
           control={form.control}
           name="preset"
@@ -64,7 +74,10 @@ const TimerSettingsForm = () => {
                     Object.entries(
                       TimerPresetsConfig[value as TimerPresets] || {}
                     ).map(([key, data]) => {
-                      form.setValue(key as keyof ITimerSettings, data);
+                      form.setValue(
+                        key as keyof ITimerSettings,
+                        formatToMinutesByKey(key as keyof ITimerSettings, data)
+                      );
                     });
                   }}
                 >

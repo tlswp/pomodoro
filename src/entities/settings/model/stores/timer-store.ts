@@ -16,13 +16,13 @@ export const useTimerSettingsStore = create<ITimerSettingsStore>()(
   persist(
     (set) => ({
       timerSettings: {
-        session: 25,
-        longBreak: 15,
-        shortBreak: 5,
+        session: 25 * 60 * 1000,
+        longBreak: 15 * 60 * 1000,
+        shortBreak: 5 * 60 * 1000,
         sessionCount: 4,
+        preset: TimerPresets.CLASSIC,
         autoPlaySession: false,
         autoPlayBreak: false,
-        preset: TimerPresets.CLASSIC,
       },
       updateTimerSettings: (settings) =>
         set((state) => ({

@@ -1,4 +1,4 @@
-import { DialogContent, DialogTitle } from '@/shared/ui/dialog';
+import { DialogContent } from '@/shared/ui/dialog';
 import { SidebarProvider } from '@/shared/ui/sidebar';
 
 import { SettingsSidebar } from './sidebar';
