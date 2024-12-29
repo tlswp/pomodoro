@@ -1,3 +1,5 @@
+import { DialogTitle } from '@radix-ui/react-dialog';
+
 import { ScrollArea } from '@/shared/ui/scroll-area';
 import { SidebarTrigger } from '@/shared/ui/sidebar';
 
@@ -14,7 +16,7 @@ export const TabItem: React.FC<ITabItemProps> = ({ children }) => {
     <div className="h-full w-full pb-4">
       <div className="flex w-full items-center gap-2">
         <SidebarTrigger className="md:hidden" />
-        {tabsConfigObject[selectedTab].title}
+        <DialogTitle>{tabsConfigObject[selectedTab].title}</DialogTitle>
       </div>
       <ScrollArea
         viewportClassName="pb-4 px-4 md:pl-0"

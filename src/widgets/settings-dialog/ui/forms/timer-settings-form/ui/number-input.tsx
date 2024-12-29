@@ -41,7 +41,7 @@ const NumberInput: React.FC<INumberInputProps> = ({
 
   return (
     <div className="flex gap-2">
-      <Button onClick={decrement} variant="outline" size="icon">
+      <Button type="button" onClick={decrement} variant="outline" size="icon">
         <MinusIcon />
       </Button>
       <Input
@@ -54,7 +54,7 @@ const NumberInput: React.FC<INumberInputProps> = ({
         }}
         onChange={(e) => setInnerValue(maskNumber(e.target.value))}
       />
-      <Button onClick={increment} variant="outline" size="icon">
+      <Button type="button" onClick={increment} variant="outline" size="icon">
         <PlusIcon />
       </Button>
     </div>

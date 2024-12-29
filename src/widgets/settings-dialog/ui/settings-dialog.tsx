@@ -8,7 +8,7 @@ import { SettingsDialogContent } from './settings-dialog-content';
 const SettingsDialog = () => {
   return (
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button
           className="absolute right-0 top-0 m-2 size-12 [&_svg]:size-6"
           size="icon"
