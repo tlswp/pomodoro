@@ -1,25 +1,29 @@
 import type { ColumnDef } from '@tanstack/react-table';
 import { format } from 'date-fns';
-import { MoreHorizontal } from 'lucide-react';
 
-import type { ITask } from '@/entities/task';
+import {
+  type ITask,
+  taskLabels,
+  TaskPriority,
+  TaskPriorityBadge,
+  TaskStatus,
+  TaskStatusBadge,
+} from '@/entities/task';
 import { Badge } from '@/shared/ui/badge';
-import { Button } from '@/shared/ui/button';
 import { Checkbox } from '@/shared/ui/checkbox';
 import { DataTableColumnHeader } from '@/shared/ui/data-table-header';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
 } from '@/shared/ui/dropdown-menu';
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from '@/shared/ui/hover-card';
+
+import { sortingPriority, sortingStatus } from '../lib';
+import TaskMenu from './task-menu';
 
 export const columns: ColumnDef<ITask>[] = [
   {
@@ -49,7 +53,7 @@ export const columns: ColumnDef<ITask>[] = [
   {
     accessorKey: 'title',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Title" />
+      <DataTableColumnHeader column={column} title={taskLabels.title} />
     ),
     cell: ({ row }) => {
       const title = row.getValue('title') as string;
@@ -59,7 +63,7 @@ export const columns: ColumnDef<ITask>[] = [
   {
     accessorKey: 'description',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Description" />
+      <DataTableColumnHeader column={column} title={taskLabels.description} />
     ),
     cell: ({ row }) => {
       const description = row.getValue('description') as string;
@@ -68,15 +72,82 @@ export const columns: ColumnDef<ITask>[] = [
   },
   {
     accessorKey: 'status',
-    header: 'Status',
+    header: ({ column }) => {
+      const filter = (column.getFilterValue() as Set<TaskStatus>) || new Set();
+      return (
+        <DataTableColumnHeader column={column} title={taskLabels.status}>
+          <DropdownMenuSeparator />
+          {Object.values(TaskStatus).map((status) => (
+            <DropdownMenuItem
+              key={status}
+              onClick={() => {
+                if (filter.has(status)) {
+                  filter.delete(status);
+                } else {
+                  filter.add(status);
+                }
+                column.setFilterValue(new Set(filter));
+              }}
+            >
+              <Checkbox checked={filter.has(status)} />
+              <TaskStatusBadge key={status} status={status} />
+            </DropdownMenuItem>
+          ))}
+        </DataTableColumnHeader>
+      );
+    },
+    filterFn: (row, id, value) => {
+      if (!value) return true;
+      if (value.size === 0) return true;
+      return value.has(row.getValue(id) as ITask['status']);
+    },
+    sortingFn: sortingStatus,
+    cell: ({ row }) => {
+      const status = row.getValue('status') as ITask['status'];
+      return <TaskStatusBadge status={status} />;
+    },
   },
   {
     accessorKey: 'priority',
-    header: 'Priority',
+    header: ({ column }) => {
+      const filter =
+        (column.getFilterValue() as Set<TaskPriority>) || new Set();
+      return (
+        <DataTableColumnHeader column={column} title={taskLabels.priority}>
+          <DropdownMenuSeparator />
+          {Object.values(TaskPriority).map((priority) => (
+            <DropdownMenuItem
+              key={priority}
+              onClick={() => {
+                if (filter.has(priority)) {
+                  filter.delete(priority);
+                } else {
+                  filter.add(priority);
+                }
+                column.setFilterValue(new Set(filter));
+              }}
+            >
+              <Checkbox checked={filter.has(priority)} />
+              <TaskPriorityBadge key={priority} priority={priority} />
+            </DropdownMenuItem>
+          ))}
+        </DataTableColumnHeader>
+      );
+    },
+    filterFn: (row, id, value) => {
+      if (!value) return true;
+      if (value.size === 0) return true;
+      return value.has(row.getValue(id) as ITask['priority']);
+    },
+    sortingFn: sortingPriority,
+    cell: ({ row }) => {
+      const priority = row.getValue('priority') as ITask['priority'];
+      return <TaskPriorityBadge priority={priority} />;
+    },
   },
   {
     accessorKey: 'tags',
-    header: 'Tags',
+    header: taskLabels.tags,
     cell: ({ row }) => {
       const tags = row.getValue('tags') as string[];
       if (!tags || tags.length === 0) {
@@ -114,7 +185,7 @@ export const columns: ColumnDef<ITask>[] = [
   {
     accessorKey: 'createdAt',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Created At" />
+      <DataTableColumnHeader column={column} title={taskLabels.createdAt} />
     ),
     cell: ({ row }) => {
       const createdAt = row.getValue('createdAt') as string;
@@ -128,7 +199,7 @@ export const columns: ColumnDef<ITask>[] = [
   {
     accessorKey: 'deadline',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Deadline" />
+      <DataTableColumnHeader column={column} title={taskLabels.deadline} />
     ),
     cell: ({ row }) => {
       const deadline = row.getValue('deadline') as string;
@@ -145,30 +216,7 @@ export const columns: ColumnDef<ITask>[] = [
     accessorKey: 'settings',
     header: () => <div className="text-end">Settings</div>,
     cell: ({ row }) => {
-      const task = row.original;
-      return (
-        <DropdownMenu>
-          <div className="flex w-full justify-end">
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="ml-auto h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <MoreHorizontal className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-          </div>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(task.id)}
-            >
-              Copy task ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View task details</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+      return <TaskMenu task={row.original} />;
     },
     enableSorting: false,
     enableHiding: false,
