@@ -10,7 +10,7 @@ const SettingsDialog = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          className="absolute right-0 top-0 m-2 size-12 [&_svg]:size-6"
+          className="fixed right-0 top-0 m-2 size-12 [&_svg]:size-6"
           size="icon"
           variant="ghost"
         >
