@@ -1,11 +1,13 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-import type { ITask } from './type';
+import type { ITask, TaskStatus } from './type';
 
 interface ITaskStore {
   tasks: ITask[];
-  addTask: (task: ITask) => void;
+  addTask: (
+    task: Partial<ITask> & { id: string; status: TaskStatus; createdAt: string }
+  ) => void;
   updateTask: (task: Partial<ITask> & { id: string }) => void;
   deleteTask: (id: string) => void;
 }
@@ -14,8 +16,13 @@ export const useTaskStore = create(
   persist<ITaskStore>(
     (set) => ({
       tasks: [],
-      addTask: (task: ITask) =>
-        set((state) => ({ tasks: [...state.tasks, task] })),
+      addTask: (
+        task: Partial<ITask> & {
+          id: string;
+          status: TaskStatus;
+          createdAt: string;
+        }
+      ) => set((state) => ({ tasks: [...state.tasks, task] })),
       updateTask: (task: Partial<ITask> & { id: string }) =>
         set((state) => ({
           tasks: state.tasks.map((t) =>

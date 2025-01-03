@@ -35,8 +35,7 @@ const TaskMenu: React.FC<{ task: ITask }> = ({ task }) => {
           Delete task
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>View customer</DropdownMenuItem>
-        <DropdownMenuItem>View task details</DropdownMenuItem>
+        <DropdownMenuItem disabled>View task details</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
