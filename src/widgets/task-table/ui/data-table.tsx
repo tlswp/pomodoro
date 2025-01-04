@@ -17,6 +17,7 @@ import {
 } from '@tanstack/react-table';
 import React from 'react';
 
+import { AddTask } from '@/features/task-create/';
 import { Button } from '@/shared/ui/button';
 import { DataTablePagination } from '@/shared/ui/data-table-pagination';
 import {
@@ -34,8 +35,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/shared/ui/table';
-
-import { AddTask } from './task-create/add-task';
 
 function useSkipper() {
   const shouldSkipRef = React.useRef(true);

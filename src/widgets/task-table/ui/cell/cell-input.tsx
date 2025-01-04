@@ -9,6 +9,7 @@ interface ICellInputProps {
   row: CellContext<ITask, unknown>['row'];
   column: CellContext<ITask, unknown>['column'];
   table: CellContext<ITask, unknown>['table'];
+  placeholder?: string;
 }
 
 export const CellInput: React.FC<ICellInputProps> = ({
@@ -16,6 +17,7 @@ export const CellInput: React.FC<ICellInputProps> = ({
   row: { index },
   column: { id },
   table,
+  placeholder,
 }) => {
   const initialValue = getValue();
   const [value, setValue] = React.useState(initialValue);
@@ -59,17 +61,21 @@ export const CellInput: React.FC<ICellInputProps> = ({
     <div className="relative -my-3 h-8">
       <div
         onDoubleClick={() => setEditing(true)}
-        className="line-clamp-1 flex h-full w-full cursor-text items-center
-          text-left"
+        className="grid h-full w-full cursor-text items-center text-left"
         role="button"
         tabIndex={0}
       >
-        {value as string}
+        <div className="truncate">
+          {(value as string) || (
+            <span className="text-muted-foreground">{placeholder}</span>
+          )}
+        </div>
       </div>
       {isEditing && (
         <Input
           ref={inputRef}
           type="text"
+          placeholder={placeholder}
           value={value as string}
           onChange={(e) => setValue(e.target.value)}
           onBlur={handleBlur}

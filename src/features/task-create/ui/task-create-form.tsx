@@ -36,9 +36,19 @@ import { Textarea } from '@/shared/ui/textarea';
 
 interface ITaskCreateFormProps {
   onOpenChange?: (open: boolean) => void;
+  defaultValues?: Partial<ITask>;
+  disabledValues?: Partial<Record<keyof ITask, boolean>>;
 }
 
-const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({ onOpenChange }) => {
+const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
+  onOpenChange,
+  defaultValues = {
+    title: '',
+    description: '',
+    status: TaskStatus.TODO,
+  },
+  disabledValues = {},
+}) => {
   const addTask = useTaskStore((state) => state.addTask);
 
   const form = useForm<ITask>({
@@ -46,6 +56,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({ onOpenChange }) => {
       title: '',
       description: '',
       status: TaskStatus.TODO,
+      ...defaultValues,
     },
   });
 
@@ -66,6 +77,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({ onOpenChange }) => {
         <FormField
           control={form.control}
           name="title"
+          disabled={disabledValues.title}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Title</FormLabel>
@@ -81,6 +93,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({ onOpenChange }) => {
         <FormField
           control={form.control}
           name="description"
+          disabled={disabledValues.description}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Description</FormLabel>
@@ -102,6 +115,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({ onOpenChange }) => {
           <FormField
             control={form.control}
             name="status"
+            disabled={disabledValues.status}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Status</FormLabel>
@@ -130,6 +144,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({ onOpenChange }) => {
           <FormField
             control={form.control}
             name="priority"
+            disabled={disabledValues.priority}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Priority</FormLabel>
@@ -168,6 +183,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({ onOpenChange }) => {
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
+                      disabled={disabledValues.deadline}
                       variant={'outline'}
                       className={cn(
                         'w-full pl-3 text-left font-normal',
@@ -185,6 +201,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({ onOpenChange }) => {
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
+                    disabled={disabledValues.deadline}
                     mode="single"
                     selected={field.value ? new Date(field.value) : undefined}
                     onSelect={field.onChange}

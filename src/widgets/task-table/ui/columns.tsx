@@ -52,7 +52,9 @@ export const columns: ColumnDef<ITask>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title={taskLabels.title} />
     ),
-    cell: ({ row, ...rest }) => <CellInput row={row} {...rest} />,
+    cell: ({ row, ...rest }) => (
+      <CellInput placeholder="Untitled" row={row} {...rest} />
+    ),
   },
   {
     accessorKey: 'description',
