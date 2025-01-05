@@ -5,7 +5,7 @@ import { TimerPresets } from '@/shared/config/timer-presets';
 import { TimerPresetsConfig } from './timer-presets';
 
 export const defaultSettings = {
-  timerSettings: TimerPresetsConfig[TimerPresets.CLASSIC],
+  timerSettings: { ...TimerPresetsConfig[TimerPresets.CLASSIC] },
   notificationSettings: {
     browser: true,
     toast: false,
