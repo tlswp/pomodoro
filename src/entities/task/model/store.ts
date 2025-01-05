@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-import type { ITask, TaskStatus } from './type';
+import type { ITask } from './type';
+import { TaskStatus } from './type';
 
 interface ITaskStore {
   tasks: ITask[];
@@ -26,7 +27,25 @@ export const useTaskStore = create(
       updateTask: (task: Partial<ITask> & { id: string }) =>
         set((state) => ({
           tasks: state.tasks.map((t) =>
-            t.id === task.id ? { ...t, ...task } : t
+            t.id === task.id
+              ? {
+                  ...t,
+                  ...task,
+                  updatedAt: new Date().toISOString(),
+                  completedAt:
+                    task.status &&
+                    task.status === TaskStatus.COMPLETED &&
+                    t.status !== TaskStatus.COMPLETED
+                      ? new Date().toISOString()
+                      : t.completedAt,
+                  canceledAt:
+                    task.status &&
+                    task.status === TaskStatus.CANCELED &&
+                    t.status !== TaskStatus.CANCELED
+                      ? new Date().toISOString()
+                      : t.canceledAt,
+                }
+              : t
           ),
         })),
       deleteTask: (id: string) =>

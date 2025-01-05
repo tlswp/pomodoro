@@ -69,7 +69,7 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
     return tasks.filter((t) => !t.deadline).length;
   }, [tasks]);
 
-  // 5. Next due task (closest deadline, exclude completed/canceled)
+  // 5. Next due task
   const nextDueTask = useMemo<ITask | null>(() => {
     const active = tasks.filter(
       (task) =>
@@ -86,7 +86,7 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
     return sorted[0] || null;
   }, [tasks]);
 
-  // 6. Completed Today (if you track completedAt)
+  // 6. Completed Today
   const completedTodayCount = useMemo(() => {
     return tasks.filter((t) => {
       if (t.status !== TaskStatus.COMPLETED || !t.completedAt) return false;
@@ -128,7 +128,7 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-2xl font-semibold leading-none tracking-tight">
+        <h3 className="text-3xl font-semibold leading-none tracking-tight">
           Tasks Info
         </h3>
         {right}
@@ -140,7 +140,7 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
             <CardTitle>Today</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{tasksTodayCount}</p>
+            <p className="text-3xl font-bold">{tasksTodayCount}</p>
           </CardContent>
         </Card>
 
@@ -149,7 +149,7 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
             <CardTitle>Next 7 Days</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{tasksWeekCount}</p>
+            <p className="text-3xl font-bold">{tasksWeekCount}</p>
           </CardContent>
         </Card>
 
@@ -158,7 +158,7 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
             <CardTitle>Overdue</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{overdueCount}</p>
+            <p className="text-3xl font-bold">{overdueCount}</p>
           </CardContent>
         </Card>
 
@@ -167,7 +167,7 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
             <CardTitle>No Deadline</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{noDeadlineCount}</p>
+            <p className="text-3xl font-bold">{noDeadlineCount}</p>
           </CardContent>
         </Card>
 
@@ -197,7 +197,7 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
             <CardTitle>Completed Today</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{completedTodayCount}</p>
+            <p className="text-3xl font-bold">{completedTodayCount}</p>
           </CardContent>
         </Card>
 
@@ -206,7 +206,7 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
             <CardTitle>High Priority</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{highPriorityCount}</p>
+            <p className="text-3xl font-bold">{highPriorityCount}</p>
           </CardContent>
         </Card>
 
@@ -228,7 +228,7 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
             <CardTitle>In Progress</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{inProgressCount}</p>
+            <p className="text-3xl font-bold">{inProgressCount}</p>
           </CardContent>
         </Card>
 
@@ -237,7 +237,7 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
             <CardTitle>Canceled</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{canceledCount}</p>
+            <p className="text-3xl font-bold">{canceledCount}</p>
           </CardContent>
         </Card>
       </div>

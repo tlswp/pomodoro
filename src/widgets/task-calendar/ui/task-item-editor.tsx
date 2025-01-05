@@ -14,6 +14,13 @@ import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { Calendar } from '@/shared/ui/calendar';
 import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/shared/ui/card';
+import {
   Form,
   FormControl,
   FormField,
@@ -66,30 +73,36 @@ export const TaskItemEditor: React.FC<TaskItemEditorProps> = ({ task }) => {
   if (!isEditing) {
     // View mode
     return (
-      <button
+      <Card
         onClick={() => setIsEditing(true)}
-        className="grid w-full cursor-pointer rounded-lg border p-3 text-left"
+        className={cn('w-full cursor-pointer')}
       >
-        <div className="flex space-x-2">
-          <TaskPriorityBadge priority={task.priority} />
-          <TaskStatusBadge status={task.status} />
-        </div>
-        <div className="mt-2 truncate text-lg font-medium">
-          {task.title || 'Untitled task'}
-        </div>
-        {task.description && (
-          <div className="text truncate font-light text-muted-foreground">
-            {task.description}
-          </div>
-        )}
-
-        {task.deadline && (
-          <div className="mt-1 text-sm font-light">
-            {/* <span className="opacity-70">Deadline: </span> */}
-            {format(new Date(task.deadline), 'PPP')}
-          </div>
-        )}
-      </button>
+        <CardHeader>
+          <CardTitle>{task.title || 'Untitled task'}</CardTitle>
+          {task.description && (
+            <CardDescription className="mt-1 line-clamp-2">
+              {task.description}
+            </CardDescription>
+          )}
+        </CardHeader>
+        <CardFooter>
+          {task.deadline && (
+            <div className="text-xs text-muted-foreground">
+              {format(new Date(task.deadline), 'PPP')}
+            </div>
+          )}
+          {task.priority && (
+            <div className="ml-auto">
+              <TaskPriorityBadge priority={task.priority} />
+            </div>
+          )}
+          {task.status && (
+            <div className="ml-2">
+              <TaskStatusBadge status={task.status} />
+            </div>
+          )}
+        </CardFooter>
+      </Card>
     );
   }
 
