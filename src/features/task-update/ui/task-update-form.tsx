@@ -1,7 +1,6 @@
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-import { v4 } from 'uuid';
 
 import type { ITask } from '@/entities/task';
 import {
@@ -23,7 +22,6 @@ import {
   FormLabel,
   FormMessage,
 } from '@/shared/ui/form';
-import { Input } from '@/shared/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
 import { ScrollArea } from '@/shared/ui/scroll-area';
 import {
