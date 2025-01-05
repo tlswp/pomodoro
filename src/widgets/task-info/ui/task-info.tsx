@@ -127,7 +127,9 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div
+        className="flex flex-col items-center justify-between gap-4 sm:flex-row"
+      >
         <h3 className="text-3xl font-semibold leading-none tracking-tight">
           Tasks Info
         </h3>

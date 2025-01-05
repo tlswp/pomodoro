@@ -23,6 +23,8 @@ const NavMenu = () => {
               </NavigationMenuLink>
             )}
           </NavLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
           <NavLink to="/task">
             {({ isActive }) => (
               <NavigationMenuLink

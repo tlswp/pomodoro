@@ -9,11 +9,7 @@ const SettingsDialog = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          className="fixed right-0 top-0 m-2 size-12 [&_svg]:size-6"
-          size="icon"
-          variant="ghost"
-        >
+        <Button className="[&_svg]:size-6" size="icon" variant="ghost">
           <CogIcon />
         </Button>
       </DialogTrigger>
