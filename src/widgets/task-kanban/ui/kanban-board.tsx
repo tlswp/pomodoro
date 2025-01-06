@@ -105,7 +105,7 @@ export const KanbanBoard: React.FC = () => {
         onOpenChange={onTaskOpenChange}
         id={openTaskId || ''}
       />
-      <div className="flex justify-stretch gap-4 overflow-x-auto p-4">
+      <div className="flex justify-stretch gap-4 overflow-x-auto py-4">
         {columns.map((col) => (
           <KanbanColumn key={col.id} status={col.id} />
         ))}

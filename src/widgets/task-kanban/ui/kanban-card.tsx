@@ -99,7 +99,7 @@ export const KanbanCard: React.FC<KanbanCardProps> = ({
       className={cn(
         'w-full cursor-grab',
         isDragging && 'cursor-grabbing',
-        overdue && 'border-red-500'
+        overdue && 'border-destructive'
       )}
     >
       <CardHeader>

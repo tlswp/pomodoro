@@ -259,7 +259,7 @@
     --primary: 280 100% 60%;
     --primary-foreground: 0 0% 100%;
     --secondary: 160 100% 50%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary-foreground: 160 50% 0%;
     --muted: 240 5% 10%;
     --muted-foreground: 0 0% 90%;
     --accent: 240 5% 12%;
@@ -329,7 +329,7 @@
     --primary: 340 80% 65%;
     --primary-foreground: 0 0% 100%;
     --secondary: 45 90% 60%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary-foreground: 45 50% 0%;
     --muted: 220 15% 15%;
     --muted-foreground: 200 80% 70%;
     --accent: 220 15% 16%;
