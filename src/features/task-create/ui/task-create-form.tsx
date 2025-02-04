@@ -204,7 +204,9 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
                     disabled={disabledValues.deadline}
                     mode="single"
                     selected={field.value ? new Date(field.value) : undefined}
-                    onSelect={field.onChange}
+                    onSelect={(date) =>
+                      field.onChange(date ? date.toISOString() : null)
+                    }
                     initialFocus
                   />
                 </PopoverContent>
