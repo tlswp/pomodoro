@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router';
 
 import { ThemeProvider } from './app/providers/theme-provider';
-import { MainPage } from './pages/main';
 import { TaskPage } from './pages/task';
 import { NavMenu } from './widgets/nav-menu';
 import { SettingsDialog } from './widgets/settings-dialog';
