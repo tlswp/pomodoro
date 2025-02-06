@@ -54,10 +54,9 @@ export default [
     rules: {
       // Common formatting rules
       'no-console': 'warn',
-      'max-len': ['warn', { code: 100 }],
+      'max-len': ['warn', { code: 120 }],
       quotes: ['error', 'single'],
       semi: ['error', 'always'],
-      indent: ['error', 2, { SwitchCase: 1 }],
 
       // TypeScript-specific rules
       '@typescript-eslint/no-unused-vars': [
@@ -68,7 +67,7 @@ export default [
         'error',
         {
           selector: 'variable',
-          format: ['camelCase', 'PascalCase'],
+          format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
           leadingUnderscore: 'allow',
           trailingUnderscore: 'allow',
         },
