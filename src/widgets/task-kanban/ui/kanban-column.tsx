@@ -67,7 +67,10 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({ status }) => {
           <Badge variant="default">{columnTasks.length}</Badge>
         </div>
 
-        <div className="flex h-full flex-col gap-2 rounded-2xl bg-muted p-2">
+        <div
+          className="flex h-full min-h-64 flex-col gap-2 rounded-2xl bg-muted
+            p-2"
+        >
           {columnTasks.map((task, index) => (
             <KanbanCard
               key={task.id}

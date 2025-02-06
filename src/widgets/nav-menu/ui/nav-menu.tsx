@@ -13,7 +13,7 @@ const NavMenu = () => {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem className="pointer-events-none opacity-50">
-          <NavLink to="/">
+          <NavLink to="/dev">
             {({ isActive }) => (
               <NavigationMenuLink
                 active={isActive}
