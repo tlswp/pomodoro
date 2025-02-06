@@ -40,7 +40,7 @@ The Pomodoro Timer helps you stay focused and manage your time effectively. Plan
 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/pomodoro.git
+git clone https://github.com/tlswp/pomodoro.git
 cd pomodoro
 ```
 
