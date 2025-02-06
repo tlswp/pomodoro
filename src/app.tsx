@@ -23,8 +23,10 @@ const App = () => {
       </div>
       <ThemeProvider />
       <Routes>
-        <Route index element={<MainPage />} />
-        <Route path="task" element={<TaskPage />} />
+        {/* TODO: Page is under development - implementing main layout and core functionality */}
+        {/* <Route index element={<MainPage />} /> */}
+        {/* TODO: Add path="task" */}
+        <Route index element={<TaskPage />} />
       </Routes>
     </>
   );

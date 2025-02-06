@@ -12,20 +12,20 @@ const NavMenu = () => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <NavigationMenuItem>
+        <NavigationMenuItem className="pointer-events-none opacity-50">
           <NavLink to="/">
             {({ isActive }) => (
               <NavigationMenuLink
                 active={isActive}
                 className={navigationMenuTriggerStyle()}
               >
-                Timer
+                Timer (soon)
               </NavigationMenuLink>
             )}
           </NavLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavLink to="/task">
+          <NavLink to="/">
             {({ isActive }) => (
               <NavigationMenuLink
                 active={isActive}
