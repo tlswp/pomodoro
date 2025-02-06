@@ -1,4 +1,4 @@
-import { minutesToMs } from '@/shared/lib/minutes-to-ms';
+import { minutesToMs } from '@/shared/lib/time-convert';
 
 import { TimerType } from '../model';
 

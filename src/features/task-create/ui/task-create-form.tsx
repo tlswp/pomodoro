@@ -120,6 +120,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
               <FormItem>
                 <FormLabel>Status</FormLabel>
                 <Select
+                  disabled={disabledValues.status}
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
@@ -149,6 +150,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
               <FormItem>
                 <FormLabel>Priority</FormLabel>
                 <Select
+                  disabled={disabledValues.priority}
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >

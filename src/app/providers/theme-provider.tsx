@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useThemeSettingsStore } from '@/entities/settings';
 import { themeClasses } from '@/shared/config/theme';
 import { ThemeMode, themeModeConfig } from '@/shared/config/theme-mode';
-import { getSystemTheme } from '@/shared/lib/get-system-theme';
+import { getSystemTheme } from '@/shared/lib/theme';
 
 interface ThemeProviderProps {
   children?: React.ReactNode;

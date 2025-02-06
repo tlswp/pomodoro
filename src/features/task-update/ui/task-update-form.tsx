@@ -127,6 +127,7 @@ const TaskUpdateForm: React.FC<ITaskUpdateFormProps> = ({
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
+                    disabled={field.disabled}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -158,6 +159,7 @@ const TaskUpdateForm: React.FC<ITaskUpdateFormProps> = ({
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
+                    disabled={field.disabled}
                   >
                     <FormControl>
                       <SelectTrigger>
