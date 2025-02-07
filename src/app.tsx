@@ -13,7 +13,11 @@ const App = () => {
           justify-between"
       >
         <div className="md:w-1/3">
-          <img className="size-8" src="/logo/abstract.svg" alt="logo" />
+          <img
+            className="size-8"
+            src={`${import.meta.env.VITE_BASE_URL}logo/abstract.svg`}
+            alt="logo"
+          />
         </div>
         <NavMenu />
         <div className="flex justify-end md:w-1/3">
