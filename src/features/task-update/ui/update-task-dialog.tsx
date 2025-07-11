@@ -1,7 +1,7 @@
 import React from 'react';
 
 import type { ITask } from '@/entities/task';
-import { Dialog, DialogContent, DialogTitle } from '@/shared/ui/dialog';
+import { Credenza, CredenzaContent, CredenzaTitle } from '@/shared/ui/credenza';
 
 import { TaskUpdateForm } from './task-update-form';
 
@@ -12,23 +12,16 @@ interface IUpdateTaskProps {
   onOpenChange?: (open: boolean) => void;
 }
 
-const UpdateTaskDialog: React.FC<IUpdateTaskProps> = ({
-  id,
-  disabledValues,
-  open,
-  onOpenChange,
-}) => {
+const UpdateTaskDialog: React.FC<IUpdateTaskProps> = ({ id, disabledValues, open, onOpenChange }) => {
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl">
-        <DialogTitle className="sr-only">Task Edit Form</DialogTitle>
-        <TaskUpdateForm
-          id={id}
-          disabledValues={disabledValues}
-          onOpenChange={onOpenChange}
-        />
-      </DialogContent>
-    </Dialog>
+    <Credenza open={open} onOpenChange={onOpenChange}>
+      <CredenzaContent className="max-h-[95%] max-w-2xl p-0">
+        <div className="overflow-y-auto p-6">
+          <CredenzaTitle className="sr-only">Task Edit Form</CredenzaTitle>
+          <TaskUpdateForm id={id} disabledValues={disabledValues} onOpenChange={onOpenChange} />
+        </div>
+      </CredenzaContent>
+    </Credenza>
   );
 };
 

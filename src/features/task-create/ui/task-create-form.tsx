@@ -4,34 +4,14 @@ import { useForm } from 'react-hook-form';
 import { v4 } from 'uuid';
 
 import type { ITask } from '@/entities/task';
-import {
-  TaskPriority,
-  TaskPriorityBadge,
-  TaskStatus,
-  TaskStatusBadge,
-  useTaskStore,
-} from '@/entities/task';
+import { TaskPriority, TaskPriorityBadge, TaskStatus, TaskStatusBadge, useTaskStore } from '@/entities/task';
 import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { Calendar } from '@/shared/ui/calendar';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/shared/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/shared/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
 import { Textarea } from '@/shared/ui/textarea';
 
 interface ITaskCreateFormProps {
@@ -60,9 +40,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
     },
   });
 
-  const submitHandler = (
-    data: Partial<ITask> & { id: string; status: TaskStatus }
-  ) => {
+  const submitHandler = (data: Partial<ITask> & { id: string; status: TaskStatus }) => {
     onOpenChange?.(false);
     addTask({
       ...data,
@@ -98,15 +76,9 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea
-                  placeholder="Enter task description"
-                  className="resize-none"
-                  {...field}
-                />
+                <Textarea placeholder="Enter task description" className="resize-none" {...field} />
               </FormControl>
-              <FormDescription>
-                More detailed description of the task
-              </FormDescription>
+              <FormDescription>More detailed description of the task</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -119,11 +91,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Status</FormLabel>
-                <Select
-                  disabled={disabledValues.status}
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+                <Select disabled={disabledValues.status} onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Select a status" />
@@ -149,11 +117,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Priority</FormLabel>
-                <Select
-                  disabled={disabledValues.priority}
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+                <Select disabled={disabledValues.priority} onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Select a priority" />
@@ -167,9 +131,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
                     ))}
                   </SelectContent>
                 </Select>
-                <FormDescription>
-                  Select the priority of the task
-                </FormDescription>
+                <FormDescription>Select the priority of the task</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -187,16 +149,9 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
                     <Button
                       disabled={disabledValues.deadline}
                       variant={'outline'}
-                      className={cn(
-                        'w-full pl-3 text-left font-normal',
-                        !field.value && 'text-muted-foreground'
-                      )}
+                      className={cn('w-full pl-3 text-left font-normal', !field.value && 'text-muted-foreground')}
                     >
-                      {field.value ? (
-                        format(field.value, 'PPP')
-                      ) : (
-                        <span>Pick a date</span>
-                      )}
+                      {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
                   </FormControl>
@@ -206,9 +161,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
                     disabled={disabledValues.deadline}
                     mode="single"
                     selected={field.value ? new Date(field.value) : undefined}
-                    onSelect={(date) =>
-                      field.onChange(date ? date.toISOString() : null)
-                    }
+                    onSelect={(date) => field.onChange(date ? date.toISOString() : null)}
                     initialFocus
                   />
                 </PopoverContent>
@@ -219,11 +172,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
           )}
         />
         <div className="flex justify-end">
-          <Button
-            className="ml-auto"
-            type="submit"
-            onClick={form.handleSubmit(submitHandler)}
-          >
+          <Button className="ml-auto" type="submit" onClick={form.handleSubmit(submitHandler)}>
             Add Task
           </Button>
         </div>
