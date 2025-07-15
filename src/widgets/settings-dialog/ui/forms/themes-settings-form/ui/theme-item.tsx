@@ -1,4 +1,4 @@
-import { RadioGroupItem } from '@radix-ui/react-radio-group';
+import { RadioGroup } from 'radix-ui';
 
 import type { ThemePresets } from '@/shared/config/theme';
 import { cn } from '@/shared/lib/utils';
@@ -14,31 +14,23 @@ interface IThemeItemProps {
   };
 }
 
-export const ThemeItem: React.FC<IThemeItemProps> = ({
-  label,
-  value,
-  selected,
-  colors,
-}) => {
+export const ThemeItem: React.FC<IThemeItemProps> = ({ label, value, selected, colors }) => {
   return (
-    <RadioGroupItem value={value}>
+    <RadioGroup.Item value={value}>
       <div
-        className={cn(
-          'size-32 rounded-2xl border-2 duration-200',
-          selected && 'border-transparent bg-gradient-to-tr p-1'
-        )}
+        className={cn('size-32 rounded-xl border-2 duration-200', selected && 'border-transparent bg-linear-to-tr p-1')}
         style={{
           borderColor: selected ? colors.border : 'transparent',
         }}
       >
         <div
-          className="size-full rounded-xl"
+          className="size-full rounded-lg"
           style={{
             background: `linear-gradient(to top right, ${colors.from}, ${colors.to})`,
           }}
         />
       </div>
       <div className="mt-2 text-sm">{label}</div>
-    </RadioGroupItem>
+    </RadioGroup.Item>
   );
 };

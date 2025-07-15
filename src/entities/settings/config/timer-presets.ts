@@ -2,10 +2,7 @@ import { TimerPresets } from '@/shared/config/timer-presets';
 
 import type { ITimerSettings } from '../model';
 
-export const TimerPresetsConfig: Record<
-  TimerPresets,
-  Partial<ITimerSettings>
-> = {
+export const TimerPresetsConfig: Record<TimerPresets, Partial<ITimerSettings>> = {
   [TimerPresets.CLASSIC]: {
     session: 25 * 60 * 1000,
     longBreak: 15 * 60 * 1000,

@@ -47,8 +47,8 @@ const TaskUpdateForm: React.FC<ITaskUpdateFormProps> = ({ onOpenChange, disabled
               <FormItem>
                 <FormControl>
                   <input
-                    className="w-full border-b border-transparent bg-transparent text-xl outline-none transition-colors
-                      placeholder:text-muted-foreground focus:border-b-primary"
+                    className="placeholder:text-muted-foreground focus:border-b-primary w-full border-b
+                      border-transparent bg-transparent text-xl transition-colors outline-none"
                     placeholder="Untitled task"
                     {...field}
                   />
@@ -68,8 +68,8 @@ const TaskUpdateForm: React.FC<ITaskUpdateFormProps> = ({ onOpenChange, disabled
                   <Textarea
                     placeholder="Enter task description"
                     autoResize
-                    className="resize-none overflow-hidden rounded-none border-b border-transparent px-0 shadow-none
-                      focus-visible:border-b-primary focus-visible:ring-0"
+                    className="focus-visible:border-b-primary resize-none overflow-hidden rounded-none border-b
+                      border-transparent px-0 shadow-none focus-visible:ring-0"
                     minRows={1}
                     {...field}
                   />
@@ -79,7 +79,7 @@ const TaskUpdateForm: React.FC<ITaskUpdateFormProps> = ({ onOpenChange, disabled
             )}
           />
         </div>
-        <div className="grid space-y-4 md:grid-cols-2 md:space-x-4 md:space-y-0">
+        <div className="grid space-y-4 md:grid-cols-2 md:space-y-0 md:space-x-4">
           <FormField
             control={form.control}
             name="status"

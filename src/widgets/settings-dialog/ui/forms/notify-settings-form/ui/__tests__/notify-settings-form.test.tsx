@@ -39,9 +39,7 @@ describe('NotifySettingsForm', () => {
   it('renders form with correct label, description and disabled switch', () => {
     render(<NotifySettingsForm />);
     expect(screen.getByText('Browser Notification')).toBeInTheDocument();
-    expect(
-      screen.getByText(browserNotifyStatusDescription['default'])
-    ).toBeInTheDocument();
+    expect(screen.getByText(browserNotifyStatusDescription['default'])).toBeInTheDocument();
     const switchElement = screen.getByRole('switch');
     expect(switchElement).toBeDisabled();
   });

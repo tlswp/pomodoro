@@ -14,10 +14,7 @@ interface ITaskStatusBadgeProps {
 const TaskStatusBadge: FC<ITaskStatusBadgeProps> = ({ status }) => {
   if (!status) return null;
   return (
-    <Badge
-      variant="outline"
-      className={cn(taskStatusColors[status], 'text-nowrap')}
-    >
+    <Badge variant="outline" className={cn(taskStatusColors[status], 'text-nowrap')}>
       {taskStatusLabels[status]}
     </Badge>
   );

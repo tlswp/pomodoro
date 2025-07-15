@@ -4,21 +4,13 @@ import { useForm } from 'react-hook-form';
 import type { INotificationSettings } from '@/entities/settings';
 import { useNotifySettingsStore } from '@/entities/settings';
 import { useNotify } from '@/shared/lib/hooks/use-notify';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-} from '@/shared/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/shared/ui/form';
 import { Switch } from '@/shared/ui/switch';
 
 import { browserNotifyStatusDescription } from '../config';
 
 const NotifySettingsForm = () => {
-  const { notificationSettings, updateNotificationSettings } =
-    useNotifySettingsStore();
+  const { notificationSettings, updateNotificationSettings } = useNotifySettingsStore();
 
   const { permission, requestPermission } = useNotify();
 
@@ -43,22 +35,13 @@ const NotifySettingsForm = () => {
           control={form.control}
           name="browser"
           render={({ field }) => (
-            <FormItem
-              className="flex flex-row items-center justify-between gap-5
-                rounded-lg"
-            >
+            <FormItem className="flex flex-row items-center justify-between gap-5 rounded-lg">
               <div className="space-y-0.5">
                 <FormLabel>Browser Notification</FormLabel>
-                <FormDescription>
-                  {browserNotifyStatusDescription[permission]}
-                </FormDescription>
+                <FormDescription>{browserNotifyStatusDescription[permission]}</FormDescription>
               </div>
               <FormControl>
-                <Switch
-                  disabled={permission !== 'granted'}
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
+                <Switch disabled={permission !== 'granted'} checked={field.value} onCheckedChange={field.onChange} />
               </FormControl>
             </FormItem>
           )}

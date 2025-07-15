@@ -83,7 +83,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
             </FormItem>
           )}
         />
-        <div className="grid space-y-4 md:grid-cols-2 md:space-x-4 md:space-y-0">
+        <div className="grid space-y-4 md:grid-cols-2 md:space-y-0 md:space-x-4">
           <FormField
             control={form.control}
             name="status"
@@ -144,7 +144,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
             <FormItem className="flex flex-col">
               <FormLabel>Deadline</FormLabel>
               <Popover>
-                <PopoverTrigger asChild>
+                <PopoverTrigger>
                   <FormControl>
                     <Button
                       disabled={disabledValues.deadline}
@@ -162,7 +162,6 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
                     mode="single"
                     selected={field.value ? new Date(field.value) : undefined}
                     onSelect={(date) => field.onChange(date ? date.toISOString() : null)}
-                    initialFocus
                   />
                 </PopoverContent>
               </Popover>

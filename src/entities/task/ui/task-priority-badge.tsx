@@ -14,10 +14,7 @@ interface ITaskPriorityBadgeProps {
 const TaskPriorityBadge: FC<ITaskPriorityBadgeProps> = ({ priority }) => {
   if (!priority) return null;
   return (
-    <Badge
-      variant="outline"
-      className={cn(taskPriorityColors[priority], 'text-nowrap')}
-    >
+    <Badge variant="outline" className={cn(taskPriorityColors[priority], 'text-nowrap')}>
       {taskPriorityLabels[priority]}
     </Badge>
   );

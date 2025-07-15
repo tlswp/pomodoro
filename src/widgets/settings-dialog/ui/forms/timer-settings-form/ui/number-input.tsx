@@ -26,8 +26,7 @@ const NumberInput: React.FC<INumberInputProps> = ({
   const [innerValue, setInnerValue] = useState(value.toString());
 
   const increment = useCallback(() => {
-    const decrementFirstStep =
-      normalizeFirstStep && value === min && step !== 1 ? 1 : 0;
+    const decrementFirstStep = normalizeFirstStep && value === min && step !== 1 ? 1 : 0;
     onChange(formatNumber(value + step - decrementFirstStep, min, max));
   }, [onChange, step, value, min, max, normalizeFirstStep]);
 

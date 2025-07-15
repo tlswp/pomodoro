@@ -24,11 +24,7 @@ interface DayTasksEditorProps {
 /**
  * Displays tasks for a specific day.
  */
-export const DayTasksEditor: React.FC<DayTasksEditorProps> = ({
-  dayKey,
-  dayTasks,
-  onClose,
-}) => {
+export const DayTasksEditor: React.FC<DayTasksEditorProps> = ({ dayKey, dayTasks, onClose }) => {
   if (!dayKey) {
     return (
       <div className="space-y-4">
@@ -43,14 +39,9 @@ export const DayTasksEditor: React.FC<DayTasksEditorProps> = ({
   return (
     <div className="space-y-4">
       {dayTasks.length === 0 && (
-        <div
-          className="my-10 flex flex-col items-center justify-center space-y-4"
-        >
+        <div className="my-10 flex flex-col items-center justify-center space-y-4">
           <p className="text-center text-sm">No tasks for this day.</p>
-          <AddTask
-            disabledValues={{ deadline: true }}
-            defaultValues={{ deadline: new Date(dayKey).toISOString() }}
-          />
+          <AddTask disabledValues={{ deadline: true }} defaultValues={{ deadline: new Date(dayKey).toISOString() }} />
         </div>
       )}
 
@@ -59,10 +50,7 @@ export const DayTasksEditor: React.FC<DayTasksEditorProps> = ({
       ))}
       {dayTasks.length !== 0 && (
         <div className="flex justify-end">
-          <AddTask
-            disabledValues={{ deadline: true }}
-            defaultValues={{ deadline: new Date(dayKey).toISOString() }}
-          />
+          <AddTask disabledValues={{ deadline: true }} defaultValues={{ deadline: new Date(dayKey).toISOString() }} />
         </div>
       )}
     </div>

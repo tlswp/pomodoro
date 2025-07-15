@@ -14,12 +14,7 @@ interface ICellDatePickerProps {
   table: CellContext<ITask, unknown>['table'];
 }
 
-export const CellDatePicker: React.FC<ICellDatePickerProps> = ({
-  getValue,
-  row: { index },
-  column: { id },
-  table,
-}) => {
+export const CellDatePicker: React.FC<ICellDatePickerProps> = ({ getValue, row: { index }, column: { id }, table }) => {
   const initialValue = getValue();
   const [value, setValue] = React.useState<string>(String(initialValue));
 
@@ -36,27 +31,17 @@ export const CellDatePicker: React.FC<ICellDatePickerProps> = ({
     [table, index, id]
   );
   const dateObject = value ? new Date(value) : undefined;
-  const formatted =
-    dateObject && isValid(dateObject) ? format(dateObject, 'PP') : '';
+  const formatted = dateObject && isValid(dateObject) ? format(dateObject, 'PP') : '';
 
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button
-          className={cn(
-            'w-full text-nowrap text-left font-normal',
-            !value && 'text-muted-foreground'
-          )}
-        >
+        <button className={cn('w-full text-left font-normal text-nowrap', !value && 'text-muted-foreground')}>
           {formatted || <span>Pick a date</span>}
         </button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
-        <Calendar
-          mode="single"
-          selected={dateObject}
-          onSelect={onValueChange}
-        />
+        <Calendar mode="single" selected={dateObject} onSelect={onValueChange} />
       </PopoverContent>
     </Popover>
   );

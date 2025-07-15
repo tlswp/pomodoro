@@ -38,12 +38,7 @@ vi.mock('@/entities/settings', () => ({
 
 vi.mock('@/entities/sound', () => ({
   SoundSelect: ({ value, onChange, disabled, soundList }: any) => (
-    <select
-      data-testid="sound-select"
-      disabled={disabled}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    >
+    <select data-testid="sound-select" disabled={disabled} value={value} onChange={(e) => onChange(e.target.value)}>
       {soundList.map((sound: string) => (
         <option key={sound} value={sound}>
           {sound}

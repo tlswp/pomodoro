@@ -11,11 +11,7 @@ import {
   startOfWeek,
 } from 'date-fns';
 
-export function getDaysForMonth(
-  year: number,
-  month: number,
-  weekStartsOn: Day = 1
-) {
+export function getDaysForMonth(year: number, month: number, weekStartsOn: Day = 1) {
   const start = startOfMonth(new Date(year, month));
   const end = endOfMonth(new Date(year, month));
   const calendarStart = startOfWeek(start, { weekStartsOn });

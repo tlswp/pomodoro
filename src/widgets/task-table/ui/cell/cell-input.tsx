@@ -66,9 +66,7 @@ export const CellInput: React.FC<ICellInputProps> = ({
         tabIndex={0}
       >
         <div className="truncate">
-          {(value as string) || (
-            <span className="text-muted-foreground">{placeholder}</span>
-          )}
+          {(value as string) || <span className="text-muted-foreground">{placeholder}</span>}
         </div>
       </div>
       {isEditing && (
@@ -80,8 +78,7 @@ export const CellInput: React.FC<ICellInputProps> = ({
           onChange={(e) => setValue(e.target.value)}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          className="absolute -top-2 h-12 rounded-none bg-background px-1
-            outline-none"
+          className="bg-background absolute -top-2 h-12 rounded-none px-1 outline-none"
         />
       )}
     </div>

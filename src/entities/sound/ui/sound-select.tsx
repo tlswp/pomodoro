@@ -1,4 +1,4 @@
-import { ToggleGroup } from '@radix-ui/react-toggle-group';
+import { ToggleGroup } from 'radix-ui';
 
 import type { ISound } from '@/shared/model/types/sound';
 
@@ -12,15 +12,9 @@ interface ISoundSelectProps {
   disabled?: boolean;
 }
 
-const SoundSelect: React.FC<ISoundSelectProps> = ({
-  value,
-  onChange,
-  soundList,
-  volume,
-  disabled,
-}) => {
+const SoundSelect: React.FC<ISoundSelectProps> = ({ value, onChange, soundList, volume, disabled }) => {
   return (
-    <ToggleGroup
+    <ToggleGroup.ToggleGroup
       disabled={disabled}
       type="single"
       value={value}
@@ -28,15 +22,9 @@ const SoundSelect: React.FC<ISoundSelectProps> = ({
       onValueChange={(value) => value && onChange(value)}
     >
       {soundList.map((sound) => (
-        <SoundSelectItem
-          key={sound.value}
-          label={sound.label}
-          value={sound.value}
-          src={sound.src}
-          volume={volume}
-        />
+        <SoundSelectItem key={sound.value} label={sound.label} value={sound.value} src={sound.src} volume={volume} />
       ))}
-    </ToggleGroup>
+    </ToggleGroup.ToggleGroup>
   );
 };
 

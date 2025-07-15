@@ -22,9 +22,7 @@ const columns = [
 export const KanbanBoard: React.FC = () => {
   const setInitialOrder = useKanbanStore((s) => s.setInitialOrder);
   const moveTaskInSameColumn = useKanbanStore((s) => s.moveTaskInSameColumn);
-  const moveTaskToAnotherColumn = useKanbanStore(
-    (s) => s.moveTaskToAnotherColumn
-  );
+  const moveTaskToAnotherColumn = useKanbanStore((s) => s.moveTaskToAnotherColumn);
   const { openTaskId, taskOpen, onTaskOpenChange } = useKanbanStore();
   const updateTask = useTaskStore((s) => s.updateTask);
 
@@ -75,13 +73,7 @@ export const KanbanBoard: React.FC = () => {
     if (activeColumn === overColumn) {
       moveTaskInSameColumn(activeColumn, activeIndex, overIndex);
     } else {
-      moveTaskToAnotherColumn(
-        activeColumn,
-        overColumn,
-        activeIndex,
-        overIndex,
-        activeId
-      );
+      moveTaskToAnotherColumn(activeColumn, overColumn, activeIndex, overIndex, activeId);
       updateTask({ id: activeId, status: overColumn as TaskStatus });
     }
     setActiveTask(null);
@@ -100,11 +92,7 @@ export const KanbanBoard: React.FC = () => {
       onDragCancel={handleDragCancel}
       sensors={sensors}
     >
-      <UpdateTaskDialog
-        open={!!(taskOpen && !!openTaskId)}
-        onOpenChange={onTaskOpenChange}
-        id={openTaskId || ''}
-      />
+      <UpdateTaskDialog open={!!(taskOpen && !!openTaskId)} onOpenChange={onTaskOpenChange} id={openTaskId || ''} />
       <div className="flex justify-stretch gap-4 overflow-x-auto py-4">
         {columns.map((col) => (
           <KanbanColumn key={col.id} status={col.id} />
@@ -112,14 +100,7 @@ export const KanbanBoard: React.FC = () => {
       </div>
 
       <DragOverlay>
-        {activeTask ? (
-          <KanbanCard
-            task={activeTask}
-            columnId={activeTask.status}
-            index={0}
-            isOverlay
-          />
-        ) : null}
+        {activeTask ? <KanbanCard task={activeTask} columnId={activeTask.status} index={0} isOverlay /> : null}
       </DragOverlay>
     </DndContext>
   );

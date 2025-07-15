@@ -5,9 +5,7 @@ import type { INotificationSettings } from '../type';
 
 interface INotifySettingsStore {
   notificationSettings: INotificationSettings;
-  updateNotificationSettings: (
-    settings: Partial<INotificationSettings>
-  ) => void;
+  updateNotificationSettings: (settings: Partial<INotificationSettings>) => void;
 }
 
 export const useNotifySettingsStore = create<INotifySettingsStore>()(

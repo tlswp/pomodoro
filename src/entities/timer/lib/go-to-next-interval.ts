@@ -5,15 +5,8 @@ import { getDurationForType } from './get-duration-for-type';
  * Move to the next interval (session or break).
  */
 export const goToNextInterval = () => {
-  const {
-    type,
-    settings,
-    completedSessions,
-    setCompletedSessions,
-    setType,
-    setTime,
-    setState,
-  } = useTimerStore.getState();
+  const { type, settings, completedSessions, setCompletedSessions, setType, setTime, setState } =
+    useTimerStore.getState();
 
   const next = (nextType: TimerType, shouldPlay: boolean) => {
     const nextDuration = getDurationForType(nextType, settings);

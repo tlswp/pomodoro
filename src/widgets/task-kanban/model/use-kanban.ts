@@ -16,11 +16,7 @@ interface KanbanStore {
 
   updateOrder: (orderId: string, orderItem: string[]) => void;
 
-  moveTaskInSameColumn: (
-    status: string,
-    fromIndex: number,
-    toIndex: number
-  ) => void;
+  moveTaskInSameColumn: (status: string, fromIndex: number, toIndex: number) => void;
 
   moveTaskToAnotherColumn: (
     fromStatus: string,
@@ -65,13 +61,7 @@ export const useKanbanStore = create(
         set({ order: { ...order, [status]: columnTasks } });
       },
 
-      moveTaskToAnotherColumn: (
-        fromStatus,
-        toStatus,
-        fromIndex,
-        toIndex,
-        taskId
-      ) => {
+      moveTaskToAnotherColumn: (fromStatus, toStatus, fromIndex, toIndex, taskId) => {
         const { order } = get();
         const fromTasks = [...(order[fromStatus] || [])];
         fromTasks.splice(fromIndex, 1);

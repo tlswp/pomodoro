@@ -17,13 +17,10 @@ describe('useNotify hook', () => {
 
   beforeEach(() => {
     FakeNotificationConstructor = vi.fn(
-      (title: string, options?: NotificationOptions) =>
-        new FakeNotification(title, options)
+      (title: string, options?: NotificationOptions) => new FakeNotification(title, options)
     );
     FakeNotificationConstructor.permission = 'default';
-    FakeNotificationConstructor.requestPermission = vi.fn(() =>
-      Promise.resolve('granted')
-    );
+    FakeNotificationConstructor.requestPermission = vi.fn(() => Promise.resolve('granted'));
     vi.stubGlobal('Notification', FakeNotificationConstructor);
   });
 

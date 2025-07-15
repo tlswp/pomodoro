@@ -5,38 +5,15 @@ import { useForm } from 'react-hook-form';
 
 import type { ITask } from '@/entities/task';
 import { TaskPriority, TaskStatus } from '@/entities/task';
-import {
-  TaskPriorityBadge,
-  TaskStatusBadge,
-  useTaskStore,
-} from '@/entities/task';
+import { TaskPriorityBadge, TaskStatusBadge, useTaskStore } from '@/entities/task';
 import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
 import { Calendar } from '@/shared/ui/calendar';
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/shared/ui/card';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/shared/ui/form';
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/shared/ui/card';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/shared/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
 import { Textarea } from '@/shared/ui/textarea';
 
 interface TaskItemEditorProps {
@@ -73,23 +50,14 @@ export const TaskItemEditor: React.FC<TaskItemEditorProps> = ({ task }) => {
   if (!isEditing) {
     // View mode
     return (
-      <Card
-        onClick={() => setIsEditing(true)}
-        className={cn('w-full cursor-pointer')}
-      >
+      <Card onClick={() => setIsEditing(true)} className={cn('w-full cursor-pointer')}>
         <CardHeader>
           <CardTitle>{task.title || 'Untitled task'}</CardTitle>
-          {task.description && (
-            <CardDescription className="mt-1 line-clamp-2">
-              {task.description}
-            </CardDescription>
-          )}
+          {task.description && <CardDescription className="mt-1 line-clamp-2">{task.description}</CardDescription>}
         </CardHeader>
         <CardFooter>
           {task.deadline && (
-            <div className="text-xs text-muted-foreground">
-              {format(new Date(task.deadline), 'PPP')}
-            </div>
+            <div className="text-muted-foreground text-xs">{format(new Date(task.deadline), 'PPP')}</div>
           )}
           {task.priority && (
             <div className="ml-auto">
@@ -109,10 +77,7 @@ export const TaskItemEditor: React.FC<TaskItemEditorProps> = ({ task }) => {
   // Edit mode
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-4 rounded border p-3"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 rounded border p-3">
         <FormField
           control={form.control}
           name="title"
@@ -134,18 +99,14 @@ export const TaskItemEditor: React.FC<TaskItemEditorProps> = ({ task }) => {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea
-                  placeholder="Enter task description"
-                  className="resize-none"
-                  {...field}
-                />
+                <Textarea placeholder="Enter task description" className="resize-none" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <div className="grid space-y-4 md:grid-cols-2 md:space-x-4 md:space-y-0">
+        <div className="grid space-y-4 md:grid-cols-2 md:space-y-0 md:space-x-4">
           <FormField
             control={form.control}
             name="status"
@@ -208,10 +169,7 @@ export const TaskItemEditor: React.FC<TaskItemEditorProps> = ({ task }) => {
                   <FormControl>
                     <Button
                       variant="outline"
-                      className={cn(
-                        'w-full pl-3 text-left font-normal',
-                        !field.value && 'text-muted-foreground'
-                      )}
+                      className={cn('w-full pl-3 text-left font-normal', !field.value && 'text-muted-foreground')}
                     >
                       {field.value ? (
                         typeof field.value === 'string' ? (
@@ -229,9 +187,7 @@ export const TaskItemEditor: React.FC<TaskItemEditorProps> = ({ task }) => {
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
                     mode="single"
-                    selected={
-                      field.value ? new Date(field.value as string) : undefined
-                    }
+                    selected={field.value ? new Date(field.value as string) : undefined}
                     onSelect={(date) => field.onChange(date?.toISOString())}
                     initialFocus
                   />
@@ -244,8 +200,7 @@ export const TaskItemEditor: React.FC<TaskItemEditorProps> = ({ task }) => {
 
         <div className="flex items-center justify-end space-x-2">
           <Button
-            className="mr-auto border-destructive text-destructive
-              hover:text-destructive/90"
+            className="border-destructive text-destructive hover:text-destructive/90 mr-auto"
             variant="outline"
             onClick={onDelete}
           >

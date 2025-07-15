@@ -2,11 +2,7 @@
  * .
  * @param {React.RefObject<SVGPathElement>} pathRef - Time in milliseconds.
  */
-export const TimerProgress = ({
-  pathRef,
-}: {
-  pathRef: React.RefObject<SVGPathElement>;
-}) => {
+export const TimerProgress = ({ pathRef }: { pathRef: React.RefObject<SVGPathElement> }) => {
   return (
     <svg
       width="322"
@@ -45,12 +41,7 @@ export const TimerProgress = ({
           colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="BackgroundImageFix"
-            result="shape"
-          />
+          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -60,15 +51,8 @@ export const TimerProgress = ({
           <feOffset dy="4" />
           <feGaussianBlur stdDeviation="2" />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-          <feColorMatrix
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-          />
-          <feBlend
-            mode="normal"
-            in2="shape"
-            result="effect1_innerShadow_104_1036"
-          />
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+          <feBlend mode="normal" in2="shape" result="effect1_innerShadow_104_1036" />
         </filter>
         <linearGradient
           id="paint0_linear_104_1036"

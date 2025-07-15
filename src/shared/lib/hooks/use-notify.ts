@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export const useNotify = () => {
-  const [permission, setPermission] = useState<NotificationPermission>(
-    Notification.permission
-  );
+  const [permission, setPermission] = useState<NotificationPermission>(Notification.permission);
 
   useEffect(() => {
     setPermission(Notification.permission);
@@ -18,10 +16,7 @@ export const useNotify = () => {
     return 'denied';
   };
 
-  const sendNotify = (
-    title: string,
-    options?: NotificationOptions
-  ): Notification | null => {
+  const sendNotify = (title: string, options?: NotificationOptions): Notification | null => {
     if (permission === 'granted' && 'Notification' in window) {
       return new Notification(title, options);
     } else {

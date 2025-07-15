@@ -1,10 +1,4 @@
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import NumberInput from '../number-input';
@@ -28,15 +22,7 @@ describe('NumberInput Component', () => {
   });
 
   it('renders decrement button, input, and increment button', () => {
-    render(
-      <NumberInput
-        min={min}
-        max={max}
-        step={step}
-        value={5}
-        onChange={onChangeMock}
-      />
-    );
+    render(<NumberInput min={min} max={max} step={step} value={5} onChange={onChangeMock} />);
     const buttons = screen.getAllByRole('button');
     expect(buttons.length).toBe(2);
     const input = screen.getByRole('textbox');
@@ -45,14 +31,7 @@ describe('NumberInput Component', () => {
 
   it('calls onChange with incremented value when plus button is clicked (with normalization)', async () => {
     render(
-      <NumberInput
-        min={min}
-        max={max}
-        step={step}
-        value={min}
-        onChange={onChangeMock}
-        normalizeFirstStep={true}
-      />
+      <NumberInput min={min} max={max} step={step} value={min} onChange={onChangeMock} normalizeFirstStep={true} />
     );
     const buttons = screen.getAllByRole('button');
     const incrementButton = buttons[1];
@@ -63,15 +42,7 @@ describe('NumberInput Component', () => {
   });
 
   it('calls onChange with decremented value when minus button is clicked', async () => {
-    render(
-      <NumberInput
-        min={min}
-        max={max}
-        step={step}
-        value={5}
-        onChange={onChangeMock}
-      />
-    );
+    render(<NumberInput min={min} max={max} step={step} value={5} onChange={onChangeMock} />);
     const buttons = screen.getAllByRole('button');
     const decrementButton = buttons[0];
     await act(async () => {
@@ -81,15 +52,7 @@ describe('NumberInput Component', () => {
   });
 
   it('updates input value on change and on blur triggers onChange with formatted number', async () => {
-    render(
-      <NumberInput
-        min={min}
-        max={max}
-        step={step}
-        value={5}
-        onChange={onChangeMock}
-      />
-    );
+    render(<NumberInput min={min} max={max} step={step} value={5} onChange={onChangeMock} />);
     const input = screen.getByRole('textbox') as HTMLInputElement;
     // Simulate typing that results in non-digit characters which are masked
     fireEvent.change(input, { target: { value: '12a3' } });
@@ -103,26 +66,10 @@ describe('NumberInput Component', () => {
   });
 
   it('updates inner input value when prop value changes', () => {
-    const { rerender } = render(
-      <NumberInput
-        min={min}
-        max={max}
-        step={step}
-        value={5}
-        onChange={onChangeMock}
-      />
-    );
+    const { rerender } = render(<NumberInput min={min} max={max} step={step} value={5} onChange={onChangeMock} />);
     const input = screen.getByRole('textbox') as HTMLInputElement;
     expect(input.value).toBe('5');
-    rerender(
-      <NumberInput
-        min={min}
-        max={max}
-        step={step}
-        value={7}
-        onChange={onChangeMock}
-      />
-    );
+    rerender(<NumberInput min={min} max={max} step={step} value={7} onChange={onChangeMock} />);
     expect(input.value).toBe('7');
   });
 });

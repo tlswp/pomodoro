@@ -2,16 +2,16 @@ import { PlusIcon } from 'lucide-react';
 import React from 'react';
 
 import type { ITask } from '@/entities/task';
-import type { ButtonProps } from '@/shared/ui/button';
+import type { ButtonVariants } from '@/shared/ui/button';
 import { Button } from '@/shared/ui/button';
-import { Credenza, CredenzaContent, CredenzaTitle, CredenzaTrigger } from '@/shared/ui/credenza';
+import { Credenza, CredenzaContent, CredenzaHeader, CredenzaTitle, CredenzaTrigger } from '@/shared/ui/credenza';
 
 import { TaskCreateForm } from './task-create-form';
 
 interface IAddTaskProps {
   defaultValues?: Partial<ITask>;
   disabledValues?: Partial<Record<keyof ITask, boolean>>;
-  variant?: ButtonProps['variant'];
+  variant?: ButtonVariants['variant'];
 }
 
 const AddTask: React.FC<IAddTaskProps> = ({ defaultValues, disabledValues, variant = 'outline' }) => {
@@ -23,11 +23,11 @@ const AddTask: React.FC<IAddTaskProps> = ({ defaultValues, disabledValues, varia
           <PlusIcon /> Add Task
         </Button>
       </CredenzaTrigger>
-      <CredenzaContent className="max-h-[95%] p-0">
-        <div className="overflow-y-auto p-6">
+      <CredenzaContent className="max-h-[95%]">
+        <CredenzaHeader>
           <CredenzaTitle>Task Creation Form</CredenzaTitle>
-          <TaskCreateForm defaultValues={defaultValues} disabledValues={disabledValues} onOpenChange={setOpen} />
-        </div>
+        </CredenzaHeader>
+        <TaskCreateForm defaultValues={defaultValues} disabledValues={disabledValues} onOpenChange={setOpen} />
       </CredenzaContent>
     </Credenza>
   );

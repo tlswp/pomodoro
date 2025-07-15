@@ -6,13 +6,7 @@ import React from 'react';
 import type { ITask } from '@/entities/task';
 import { TaskPriorityBadge, TaskStatus } from '@/entities/task';
 import { cn } from '@/shared/lib/utils';
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/shared/ui/card';
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/shared/ui/card';
 
 import { useKanbanStore } from '../model';
 
@@ -23,20 +17,8 @@ interface KanbanCardProps {
   isOverlay?: boolean;
 }
 
-export const KanbanCard: React.FC<KanbanCardProps> = ({
-  task,
-  columnId,
-  index,
-  isOverlay = false,
-}) => {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({
+export const KanbanCard: React.FC<KanbanCardProps> = ({ task, columnId, index, isOverlay = false }) => {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: task.id,
     data: {
       columnId,
@@ -49,17 +31,11 @@ export const KanbanCard: React.FC<KanbanCardProps> = ({
       <Card className={cn('w-full cursor-grabbing', 'opacity-90')}>
         <CardHeader>
           <CardTitle>{task.title || 'Untitled task'}</CardTitle>
-          {task.description && (
-            <CardDescription className="mt-1 line-clamp-2">
-              {task.description}
-            </CardDescription>
-          )}
+          {task.description && <CardDescription className="mt-1 line-clamp-2">{task.description}</CardDescription>}
         </CardHeader>
         <CardFooter>
           {task.deadline && (
-            <div className="text-xs text-muted-foreground">
-              {format(new Date(task.deadline), 'PPP')}
-            </div>
+            <div className="text-muted-foreground text-xs">{format(new Date(task.deadline), 'PPP')}</div>
           )}
           {task.priority && (
             <div className="ml-auto">
@@ -96,26 +72,14 @@ export const KanbanCard: React.FC<KanbanCardProps> = ({
       {...attributes}
       {...listeners}
       onClick={handleOpenModal}
-      className={cn(
-        'w-full cursor-grab',
-        isDragging && 'cursor-grabbing',
-        overdue && 'border-destructive'
-      )}
+      className={cn('w-full cursor-grab', isDragging && 'cursor-grabbing', overdue && 'border-destructive')}
     >
       <CardHeader>
         <CardTitle>{task.title || 'Untitled task'}</CardTitle>
-        {task.description && (
-          <CardDescription className="mt-1 line-clamp-2">
-            {task.description}
-          </CardDescription>
-        )}
+        {task.description && <CardDescription className="mt-1 line-clamp-2">{task.description}</CardDescription>}
       </CardHeader>
       <CardFooter>
-        {task.deadline && (
-          <div className="text-xs text-muted-foreground">
-            {format(new Date(task.deadline), 'PPP')}
-          </div>
-        )}
+        {task.deadline && <div className="text-muted-foreground text-xs">{format(new Date(task.deadline), 'PPP')}</div>}
         {task.priority && (
           <div className="ml-auto">
             <TaskPriorityBadge priority={task.priority} />

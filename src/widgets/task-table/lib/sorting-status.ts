@@ -3,11 +3,7 @@ import type { Row } from '@tanstack/react-table';
 import type { ITask } from '@/entities/task';
 import { TaskStatus } from '@/entities/task';
 
-export const sortingStatus = (
-  rowA: Row<ITask>,
-  rowB: Row<ITask>,
-  columnId: string
-) => {
+export const sortingStatus = (rowA: Row<ITask>, rowB: Row<ITask>, columnId: string) => {
   const a = rowA.getValue(columnId) as ITask['status'];
   const b = rowB.getValue(columnId) as ITask['status'];
   let aNumber = 0;

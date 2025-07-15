@@ -7,9 +7,8 @@ import { Tabs } from './tabs';
 const SettingsDialogContent = () => {
   return (
     <DialogContent
-      className="flex h-full min-h-[calc(50svh-theme(spacing.4))] max-w-[880px]
-        overflow-hidden rounded-none md:h-[600px]
-        md:max-h-[calc(100svh-theme(spacing.4))] md:min-w-[500px] md:rounded-xl"
+      className="flex h-full min-h-[calc(50svh-(--spacing(4)))] w-full overflow-hidden rounded-none sm:max-w-[880px]
+        md:h-[600px] md:max-h-[calc(100svh-(--spacing(4)))] md:min-w-[500px] md:rounded-xl"
     >
       <SidebarProvider
         style={

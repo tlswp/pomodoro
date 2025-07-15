@@ -2,12 +2,7 @@ import { faker } from '@faker-js/faker';
 import { useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import {
-  type ITask,
-  TaskPriority,
-  TaskStatus,
-  useTaskStore,
-} from '@/entities/task';
+import { type ITask, TaskPriority, TaskStatus, useTaskStore } from '@/entities/task';
 
 import { columns } from './columns';
 import { DataTable } from './data-table';
@@ -24,9 +19,7 @@ export function generateTasks(count: number): ITask[] {
       description: faker.lorem.sentences(2),
       status: faker.helpers.arrayElement(Object.values(TaskStatus)),
       priority: faker.helpers.arrayElement(Object.values(TaskPriority)),
-      tags: Array.from({ length: faker.number.int({ min: 1, max: 50 }) }, () =>
-        faker.lorem.word()
-      ),
+      tags: Array.from({ length: faker.number.int({ min: 1, max: 50 }) }, () => faker.lorem.word()),
       deadline: faker.date.future().toISOString(),
       createdAt: now,
       updatedAt: now,
@@ -49,15 +42,11 @@ const TaskTable = () => {
         [columnId]: value,
         updatedAt: new Date().toISOString(),
         completedAt:
-          columnId === 'status' &&
-          value === TaskStatus.COMPLETED &&
-          task.completedAt !== TaskStatus.COMPLETED
+          columnId === 'status' && value === TaskStatus.COMPLETED && task.completedAt !== TaskStatus.COMPLETED
             ? new Date().toISOString()
             : task.completedAt,
         canceledAt:
-          columnId === 'status' &&
-          value === TaskStatus.CANCELED &&
-          task.canceledAt !== TaskStatus.CANCELED
+          columnId === 'status' && value === TaskStatus.CANCELED && task.canceledAt !== TaskStatus.CANCELED
             ? new Date().toISOString()
             : task.canceledAt,
       });

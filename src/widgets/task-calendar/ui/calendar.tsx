@@ -6,12 +6,7 @@ import { useTaskStore } from '@/entities/task';
 import { TaskStatus } from '@/entities/task';
 import { cn } from '@/shared/lib/utils';
 import { Badge } from '@/shared/ui/badge';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/shared/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/shared/ui/dialog';
 import { ScrollArea, ScrollBar } from '@/shared/ui/scroll-area';
 
 import { checkIsToday, isSameYearMonth, parseDeadline } from '../lib/date';
@@ -25,17 +20,8 @@ interface CalendarProps {
   consideredStatuses?: TaskStatus[];
 }
 
-export const Calendar: React.FC<CalendarProps> = ({
-  consideredStatuses = defaultConsideredStatuses,
-}) => {
-  const {
-    currentYear,
-    currentMonth,
-    days,
-    goToToday,
-    goToPreviousMonth,
-    goToNextMonth,
-  } = useCalendar();
+export const Calendar: React.FC<CalendarProps> = ({ consideredStatuses = defaultConsideredStatuses }) => {
+  const { currentYear, currentMonth, days, goToToday, goToPreviousMonth, goToNextMonth } = useCalendar();
 
   const tasks = useTaskStore((state) => state.tasks);
 
@@ -74,21 +60,17 @@ export const Calendar: React.FC<CalendarProps> = ({
         <ScrollBar orientation="horizontal" />
         <div className="grid grid-cols-7 border-l text-center font-medium">
           {weekDays.map((wd) => (
-            <div className="border-r border-t py-2" key={wd}>
+            <div className="border-t border-r py-2" key={wd}>
               {wd}
             </div>
           ))}
         </div>
 
-        <div className="grid min-w-[300px] grid-cols-7 border-l border-t">
+        <div className="grid min-w-[300px] grid-cols-7 border-t border-l">
           {days.map((day) => {
             const dayKey = format(day, 'yyyy-MM-dd');
             const isToday = checkIsToday(day);
-            const isCurrentMonth = isSameYearMonth(
-              day,
-              currentYear,
-              currentMonth
-            );
+            const isCurrentMonth = isSameYearMonth(day, currentYear, currentMonth);
             const tasksOfDay = tasksByDay.get(dayKey) || [];
             const count = tasksOfDay.length;
 
@@ -96,32 +78,23 @@ export const Calendar: React.FC<CalendarProps> = ({
               <div
                 key={dayKey}
                 className={cn(
-                  `relative flex h-20 flex-col items-center justify-center
-                  border-b border-r p-1 sm:h-36`,
+                  'relative flex h-20 flex-col items-center justify-center border-r border-b p-1 sm:h-36',
                   !isCurrentMonth && 'text-muted-foreground'
                 )}
                 onClick={() => setSelectedDayKey(dayKey)}
                 role="button"
                 tabIndex={0}
-                onKeyDown={(e) =>
-                  e.key === 'Enter' && setSelectedDayKey(dayKey)
-                }
+                onKeyDown={(e) => e.key === 'Enter' && setSelectedDayKey(dayKey)}
               >
                 <div
                   className={cn(
-                    `right-2 top-2 mb-1 flex size-6 items-center justify-center
-                    rounded-full text-base sm:absolute`,
+                    'top-2 right-2 mb-1 flex size-6 items-center justify-center rounded-full text-base sm:absolute',
                     isToday && 'bg-primary text-primary-foreground'
                   )}
                 >
                   {format(day, 'd')}
                 </div>
-                {count > 0 && (
-                  <div
-                    className="block size-1 rounded-full bg-muted-foreground
-                      sm:hidden"
-                  />
-                )}
+                {count > 0 && <div className="bg-muted-foreground block size-1 rounded-full sm:hidden" />}
                 <div className="hidden text-xs sm:block">
                   {count > 0 ? (
                     <Badge variant="secondary">
@@ -139,16 +112,10 @@ export const Calendar: React.FC<CalendarProps> = ({
       <Dialog open={!!selectedDayKey} onOpenChange={closeDialog}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
-            <DialogTitle>
-              Tasks for {selectedDayKey && format(selectedDayKey, 'PPP')}
-            </DialogTitle>
+            <DialogTitle>Tasks for {selectedDayKey && format(selectedDayKey, 'PPP')}</DialogTitle>
           </DialogHeader>
 
-          <DayTasksEditor
-            dayKey={selectedDayKey}
-            dayTasks={dayTasks}
-            onClose={closeDialog}
-          />
+          <DayTasksEditor dayKey={selectedDayKey} dayTasks={dayTasks} onClose={closeDialog} />
         </DialogContent>
       </Dialog>
     </div>

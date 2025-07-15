@@ -14,13 +14,7 @@ export const recoverTimer = () => {
     let currentState: TimerState = state;
 
     while (remainingTime <= 0 && currentState === TimerState.PLAYING) {
-      const {
-        nextType,
-        nextTime,
-        nextCompletedSessions,
-        nextState,
-        shouldUpdateStartDate,
-      } = computeNextInterval();
+      const { nextType, nextTime, nextCompletedSessions, nextState, shouldUpdateStartDate } = computeNextInterval();
 
       useTimerStore.setState((store) => ({
         type: nextType,
@@ -38,10 +32,7 @@ export const recoverTimer = () => {
       }
     }
 
-    if (
-      remainingTime > 0 &&
-      useTimerStore.getState().state === TimerState.PLAYING
-    ) {
+    if (remainingTime > 0 && useTimerStore.getState().state === TimerState.PLAYING) {
       useTimerStore.setState({ time: remainingTime });
     }
   } else if (state === TimerState.PAUSED) {

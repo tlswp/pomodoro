@@ -56,32 +56,20 @@ vi.mock('../config', () => ({
 describe('ThemesSettingsForm', () => {
   beforeEach(() => {
     updateThemeSettingsMock.mockClear();
-    vi.spyOn(configModule, 'themePreviewList', 'get').mockReturnValue(
-      themePreviewListMock
-    );
+    vi.spyOn(configModule, 'themePreviewList', 'get').mockReturnValue(themePreviewListMock);
   });
 
   it('renders theme mode and theme selection fields', () => {
     render(<ThemesSettingsForm />);
     expect(screen.getByText('Select Theme Mode')).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        'Choose between light, dark, or system mode to suit your preference.'
-      )
-    ).toBeInTheDocument();
+    expect(screen.getByText('Choose between light, dark, or system mode to suit your preference.')).toBeInTheDocument();
     expect(screen.getByText('Select Theme')).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        'Pick a timer style that matches your vibe and keeps you motivated.'
-      )
-    ).toBeInTheDocument();
+    expect(screen.getByText('Pick a timer style that matches your vibe and keeps you motivated.')).toBeInTheDocument();
     expect(screen.getByText('Light')).toBeInTheDocument();
     expect(screen.getByText('Dark')).toBeInTheDocument();
     expect(screen.getByText('System')).toBeInTheDocument();
     themePreviewListMock.forEach((theme) => {
-      expect(
-        screen.getByText(new RegExp(theme.label, 'i'))
-      ).toBeInTheDocument();
+      expect(screen.getByText(new RegExp(theme.label, 'i'))).toBeInTheDocument();
     });
   });
 
@@ -99,9 +87,7 @@ describe('ThemesSettingsForm', () => {
   it('updates theme when a different theme is selected', async () => {
     render(<ThemesSettingsForm />);
     const radios = screen.getAllByRole('radio', { hidden: true });
-    const themeTwoRadio = radios.find(
-      (radio) => radio.getAttribute('value') === 'theme2'
-    );
+    const themeTwoRadio = radios.find((radio) => radio.getAttribute('value') === 'theme2');
     expect(themeTwoRadio).toBeDefined();
     await userEvent.click(themeTwoRadio!);
     await waitFor(() => {
