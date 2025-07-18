@@ -95,7 +95,7 @@ export function DataTable<TData, TValue>({ columns, data, updateData }: DataTabl
         <div className="ml-auto flex items-center space-x-2">
           <AddTask />
           <DropdownMenu>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger asChild>
               <Button variant="outline">Columns</Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

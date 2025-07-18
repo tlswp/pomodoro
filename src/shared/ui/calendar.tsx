@@ -16,6 +16,7 @@ function Calendar({
   buttonVariant = 'ghost',
   formatters,
   components,
+  fixedWeeks = true,
   ...props
 }: React.ComponentProps<typeof DayPicker> & {
   buttonVariant?: React.ComponentProps<typeof Button>['variant'];
@@ -36,6 +37,7 @@ function Calendar({
         className
       )}
       captionLayout={captionLayout}
+      fixedWeeks={fixedWeeks}
       formatters={{
         formatMonthDropdown: (date) => date.toLocaleString('default', { month: 'short' }),
         ...formatters,

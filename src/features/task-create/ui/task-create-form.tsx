@@ -144,7 +144,7 @@ const TaskCreateForm: React.FC<ITaskCreateFormProps> = ({
             <FormItem className="flex flex-col">
               <FormLabel>Deadline</FormLabel>
               <Popover>
-                <PopoverTrigger>
+                <PopoverTrigger asChild>
                   <FormControl>
                     <Button
                       disabled={disabledValues.deadline}

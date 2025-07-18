@@ -67,10 +67,8 @@ const TaskUpdateForm: React.FC<ITaskUpdateFormProps> = ({ onOpenChange, disabled
                 <FormControl>
                   <Textarea
                     placeholder="Enter task description"
-                    autoResize
                     className="focus-visible:border-b-primary resize-none overflow-hidden rounded-none border-b
                       border-transparent px-0 shadow-none focus-visible:ring-0"
-                    minRows={1}
                     {...field}
                   />
                 </FormControl>
@@ -158,7 +156,6 @@ const TaskUpdateForm: React.FC<ITaskUpdateFormProps> = ({ onOpenChange, disabled
                     mode="single"
                     selected={field.value ? new Date(field.value) : undefined}
                     onSelect={(date) => field.onChange(date ? date.toISOString() : null)}
-                    initialFocus
                   />
                 </PopoverContent>
               </Popover>

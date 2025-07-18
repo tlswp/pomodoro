@@ -100,9 +100,7 @@ export const Calendar: React.FC<CalendarProps> = ({ consideredStatuses = default
                     <Badge variant="secondary">
                       {count} task{count !== 1 ? 's' : ''}
                     </Badge>
-                  ) : (
-                    <span className="opacity-70">0 tasks</span>
-                  )}
+                  ) : null}
                 </div>
               </div>
             );

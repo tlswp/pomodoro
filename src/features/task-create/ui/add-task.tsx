@@ -5,6 +5,7 @@ import type { ITask } from '@/entities/task';
 import type { ButtonVariants } from '@/shared/ui/button';
 import { Button } from '@/shared/ui/button';
 import { Credenza, CredenzaContent, CredenzaHeader, CredenzaTitle, CredenzaTrigger } from '@/shared/ui/credenza';
+import { ScrollArea } from '@/shared/ui/scroll-area';
 
 import { TaskCreateForm } from './task-create-form';
 
@@ -23,11 +24,13 @@ const AddTask: React.FC<IAddTaskProps> = ({ defaultValues, disabledValues, varia
           <PlusIcon /> Add Task
         </Button>
       </CredenzaTrigger>
-      <CredenzaContent className="max-h-[95%]">
+      <CredenzaContent className="flex max-h-[95%] flex-col p-0">
         <CredenzaHeader>
-          <CredenzaTitle>Task Creation Form</CredenzaTitle>
+          <CredenzaTitle className="m-6 mb-0">Task Creation Form</CredenzaTitle>
         </CredenzaHeader>
-        <TaskCreateForm defaultValues={defaultValues} disabledValues={disabledValues} onOpenChange={setOpen} />
+        <div className="overflow-auto p-6 pt-0">
+          <TaskCreateForm defaultValues={defaultValues} disabledValues={disabledValues} onOpenChange={setOpen} />
+        </div>
       </CredenzaContent>
     </Credenza>
   );

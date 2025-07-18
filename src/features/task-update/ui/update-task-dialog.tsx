@@ -15,8 +15,8 @@ interface IUpdateTaskProps {
 const UpdateTaskDialog: React.FC<IUpdateTaskProps> = ({ id, disabledValues, open, onOpenChange }) => {
   return (
     <Credenza open={open} onOpenChange={onOpenChange}>
-      <CredenzaContent className="max-h-[95%] max-w-2xl p-0">
-        <div className="overflow-y-auto p-6">
+      <CredenzaContent className="flex max-h-[95%] flex-col p-0">
+        <div className="overflow-auto p-6">
           <CredenzaTitle className="sr-only">Task Edit Form</CredenzaTitle>
           <TaskUpdateForm id={id} disabledValues={disabledValues} onOpenChange={onOpenChange} />
         </div>
