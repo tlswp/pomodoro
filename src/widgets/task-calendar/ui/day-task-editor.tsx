@@ -1,10 +1,11 @@
+import { format } from 'date-fns';
 import React from 'react';
 
-import type { ITask } from '@/entities/task';
+import { type ITask, TaskPriorityBadge, TaskStatusBadge } from '@/entities/task';
 import { AddTask } from '@/features/task-create';
+import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/ui/button';
-
-import { TaskItemEditor } from './task-item-editor';
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/shared/ui/card';
 
 interface DayTasksEditorProps {
   /**
@@ -19,12 +20,13 @@ interface DayTasksEditorProps {
    * Callback to close the parent dialog
    */
   onClose: () => void;
+  onOpenUpdate: (taskId: string) => void;
 }
 
 /**
  * Displays tasks for a specific day.
  */
-export const DayTasksEditor: React.FC<DayTasksEditorProps> = ({ dayKey, dayTasks, onClose }) => {
+export const DayTasksEditor: React.FC<DayTasksEditorProps> = ({ dayKey, dayTasks, onClose, onOpenUpdate }) => {
   if (!dayKey) {
     return (
       <div className="space-y-4">
@@ -46,7 +48,27 @@ export const DayTasksEditor: React.FC<DayTasksEditorProps> = ({ dayKey, dayTasks
       )}
 
       {dayTasks.map((task) => (
-        <TaskItemEditor key={task.id} task={task} />
+        <Card onClick={() => onOpenUpdate(task.id)} className={cn('w-full cursor-pointer')}>
+          <CardHeader>
+            <CardTitle>{task.title || 'Untitled task'}</CardTitle>
+            {task.description && <CardDescription className="mt-1 line-clamp-2">{task.description}</CardDescription>}
+          </CardHeader>
+          <CardFooter>
+            {task.deadline && (
+              <div className="text-muted-foreground text-xs">{format(new Date(task.deadline), 'PPP')}</div>
+            )}
+            {task.priority && (
+              <div className="ml-auto">
+                <TaskPriorityBadge priority={task.priority} />
+              </div>
+            )}
+            {task.status && (
+              <div className="ml-2">
+                <TaskStatusBadge status={task.status} />
+              </div>
+            )}
+          </CardFooter>
+        </Card>
       ))}
       {dayTasks.length !== 0 && (
         <div className="flex justify-end">
