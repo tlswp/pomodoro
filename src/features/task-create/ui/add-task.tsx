@@ -5,7 +5,6 @@ import type { ITask } from '@/entities/task';
 import type { ButtonVariants } from '@/shared/ui/button';
 import { Button } from '@/shared/ui/button';
 import { Credenza, CredenzaContent, CredenzaHeader, CredenzaTitle, CredenzaTrigger } from '@/shared/ui/credenza';
-import { ScrollArea } from '@/shared/ui/scroll-area';
 
 import { TaskCreateForm } from './task-create-form';
 
