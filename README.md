@@ -19,7 +19,7 @@ The Pomodoro Timer helps you stay focused and manage your time effectively. Plan
 
 ## Tech Stack
 
-- **Framework:** React 18
+- **Framework:** React 19.1
 - **Language:** TypeScript
 - **Build Tool:** Vite
 - **Styling:** Tailwind CSS v4
