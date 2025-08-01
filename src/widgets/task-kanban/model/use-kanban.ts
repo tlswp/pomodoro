@@ -1,3 +1,4 @@
+import type { Dispatch } from 'react';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
@@ -12,15 +13,13 @@ interface KanbanStore {
   setOpenTaskId: (id: string | null) => void;
   order: KanbanOrder;
 
+  setOrder: Dispatch<KanbanOrder | ((prevState: KanbanOrder) => KanbanOrder)>;
+
   setInitialOrder: (statuses: string[]) => void;
 
   updateOrder: (orderId: string, orderItem: string[]) => void;
 
-  moveTaskInSameColumn: (
-    status: string,
-    fromIndex: number,
-    toIndex: number
-  ) => void;
+  moveTaskInSameColumn: (status: string, fromIndex: number, toIndex: number) => void;
 
   moveTaskToAnotherColumn: (
     fromStatus: string,
@@ -41,6 +40,9 @@ export const useKanbanStore = create(
       onTaskOpenChange: (open) => set({ taskOpen: open }),
       setOpenTaskId: (id) => set({ openTaskId: id }),
       order: {},
+
+      setOrder: (order) =>
+        typeof order === 'function' ? set((state) => ({ order: order(state.order) })) : set({ order }),
 
       setInitialOrder: (statuses) => {
         const { order } = get();
@@ -65,13 +67,7 @@ export const useKanbanStore = create(
         set({ order: { ...order, [status]: columnTasks } });
       },
 
-      moveTaskToAnotherColumn: (
-        fromStatus,
-        toStatus,
-        fromIndex,
-        toIndex,
-        taskId
-      ) => {
+      moveTaskToAnotherColumn: (fromStatus, toStatus, fromIndex, toIndex, taskId) => {
         const { order } = get();
         const fromTasks = [...(order[fromStatus] || [])];
         fromTasks.splice(fromIndex, 1);

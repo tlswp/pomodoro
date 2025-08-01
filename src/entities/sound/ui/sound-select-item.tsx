@@ -1,4 +1,4 @@
-import { ToggleGroupItem } from '@radix-ui/react-toggle-group';
+import { ToggleGroup } from 'radix-ui';
 
 import { useSound } from '@/shared/lib/hooks/use-sound';
 
@@ -9,26 +9,19 @@ interface SoundSelectItemProps {
   volume: number;
 }
 
-const SoundSelectItem: React.FC<SoundSelectItemProps> = ({
-  label,
-  value,
-  src,
-  volume,
-}) => {
+const SoundSelectItem: React.FC<SoundSelectItemProps> = ({ label, value, src, volume }) => {
   const { play } = useSound(src, { volume });
   return (
-    <ToggleGroupItem
+    <ToggleGroup.ToggleGroupItem
       onClick={play}
       value={value}
-      className="size-16 rounded-lg border-2 bg-background text-sm text-primary
-        duration-200 hover:bg-accent hover:text-accent-foreground
-        active:scale-95 disabled:cursor-not-allowed disabled:border-transparent
-        disabled:bg-muted disabled:active:scale-100
-        data-[state=on]:border-primary
+      className="bg-background text-primary hover:bg-accent hover:text-accent-foreground disabled:bg-muted
+        data-[state=on]:border-primary size-16 rounded-lg border-2 text-sm duration-200 active:scale-95
+        disabled:cursor-not-allowed disabled:border-transparent disabled:active:scale-100
         disabled:data-[state=on]:border-transparent"
     >
       {label}
-    </ToggleGroupItem>
+    </ToggleGroup.ToggleGroupItem>
   );
 };
 

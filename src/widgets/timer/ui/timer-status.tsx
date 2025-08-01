@@ -7,24 +7,13 @@ interface ITimerStatusProps {
   children: React.ReactNode;
   className?: string;
 }
-export const TimerStatus: React.FC<ITimerStatusProps> = ({
-  status,
-  children,
-  className,
-  ...props
-}) => {
+export const TimerStatus: React.FC<ITimerStatusProps> = ({ status, children, className, ...props }) => {
   const getStatus = () => {
     switch (status) {
       case TimerStatuses.PAUSE:
         return {
           icon: (
-            <svg
-              width="27"
-              height="27"
-              viewBox="0 0 27 27"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -38,13 +27,7 @@ export const TimerStatus: React.FC<ITimerStatusProps> = ({
       case TimerStatuses.FOCUS:
         return {
           icon: (
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M16 19.2C16.8487 19.2 17.6627 18.8629 18.2628 18.2627C18.8629 17.6626 19.2 16.8487 19.2 16C19.2 15.1513 18.8629 14.3374 18.2628 13.7373C17.6627 13.1371 16.8487 12.8 16 12.8C15.1514 12.8 14.3374 13.1371 13.7373 13.7373C13.1372 14.3374 12.8 15.1513 12.8 16C12.8 16.8487 13.1372 17.6626 13.7373 18.2627C14.3374 18.8629 15.1514 19.2 16 19.2Z"
                 fill="#334155"
@@ -62,13 +45,7 @@ export const TimerStatus: React.FC<ITimerStatusProps> = ({
       case TimerStatuses.SHORT_BREAK:
         return {
           icon: (
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 28 28"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -82,13 +59,7 @@ export const TimerStatus: React.FC<ITimerStatusProps> = ({
       case TimerStatuses.LONG_BREAK:
         return {
           icon: (
-            <svg
-              width="26"
-              height="26"
-              viewBox="0 0 26 26"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -102,13 +73,7 @@ export const TimerStatus: React.FC<ITimerStatusProps> = ({
       default:
         return {
           icon: (
-            <svg
-              width="27"
-              height="27"
-              viewBox="0 0 27 27"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"

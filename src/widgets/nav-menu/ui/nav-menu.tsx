@@ -15,10 +15,7 @@ const NavMenu = () => {
         <NavigationMenuItem className="pointer-events-none opacity-50">
           <NavLink to="/dev">
             {({ isActive }) => (
-              <NavigationMenuLink
-                active={isActive}
-                className={navigationMenuTriggerStyle()}
-              >
+              <NavigationMenuLink active={isActive} className={navigationMenuTriggerStyle()}>
                 Timer (soon)
               </NavigationMenuLink>
             )}
@@ -27,10 +24,7 @@ const NavMenu = () => {
         <NavigationMenuItem>
           <NavLink to="/">
             {({ isActive }) => (
-              <NavigationMenuLink
-                active={isActive}
-                className={navigationMenuTriggerStyle()}
-              >
+              <NavigationMenuLink active={isActive} className={navigationMenuTriggerStyle()}>
                 Task List
               </NavigationMenuLink>
             )}

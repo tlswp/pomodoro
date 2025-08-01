@@ -26,14 +26,8 @@ const TaskMenu: React.FC<{ task: ITask }> = ({ task }) => {
       </div>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem
-          onClick={() => navigator.clipboard.writeText(task.id)}
-        >
-          Copy task ID
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => deleteTask(task.id)}>
-          Delete task
-        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => navigator.clipboard.writeText(task.id)}>Copy task ID</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => deleteTask(task.id)}>Delete task</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem disabled>View task details</DropdownMenuItem>
       </DropdownMenuContent>

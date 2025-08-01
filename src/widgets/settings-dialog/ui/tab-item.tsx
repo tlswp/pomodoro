@@ -20,8 +20,7 @@ export const TabItem: React.FC<ITabItemProps> = ({ children }) => {
       </div>
       <ScrollArea
         viewportClassName="pb-4 px-4 md:pl-0"
-        className="-mx-4 mt-4 h-full w-[calc(100%+theme(spacing.10))] md:mx-0
-          md:w-full"
+        className="-mx-4 mt-4 h-full w-[calc(100%+(--spacing(10)))] md:mx-0 md:w-full"
       >
         {children}
       </ScrollArea>

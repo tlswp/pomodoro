@@ -1,20 +1,10 @@
 import type { ColumnDef } from '@tanstack/react-table';
 import { format } from 'date-fns';
 
-import {
-  type ITask,
-  taskLabels,
-  TaskPriority,
-  TaskPriorityBadge,
-  TaskStatus,
-  TaskStatusBadge,
-} from '@/entities/task';
+import { type ITask, taskLabels, TaskPriority, TaskPriorityBadge, TaskStatus, TaskStatusBadge } from '@/entities/task';
 import { Checkbox } from '@/shared/ui/checkbox';
 import { DataTableColumnHeader } from '@/shared/ui/data-table-header';
-import {
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-} from '@/shared/ui/dropdown-menu';
+import { DropdownMenuItem, DropdownMenuSeparator } from '@/shared/ui/dropdown-menu';
 
 import { sortingPriority, sortingStatus } from '../lib';
 import { CellDatePicker } from './cell/cell-date-picker';
@@ -28,10 +18,7 @@ export const columns: ColumnDef<ITask>[] = [
     header: ({ table }) => (
       <div className="w-6">
         <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && 'indeterminate')
-          }
+          checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate')}
           onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
           aria-label="Select all"
         />
@@ -49,18 +36,12 @@ export const columns: ColumnDef<ITask>[] = [
   },
   {
     accessorKey: 'title',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={taskLabels.title} />
-    ),
-    cell: ({ row, ...rest }) => (
-      <CellInput placeholder="Untitled" row={row} {...rest} />
-    ),
+    header: ({ column }) => <DataTableColumnHeader column={column} title={taskLabels.title} />,
+    cell: ({ row, ...rest }) => <CellInput placeholder="Untitled" row={row} {...rest} />,
   },
   {
     accessorKey: 'description',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={taskLabels.description} />
-    ),
+    header: ({ column }) => <DataTableColumnHeader column={column} title={taskLabels.description} />,
     cell: ({ row, ...rest }) => <CellInput row={row} {...rest} />,
   },
   {
@@ -100,17 +81,14 @@ export const columns: ColumnDef<ITask>[] = [
         row={row}
         {...rest}
         options={Object.values(TaskStatus)}
-        render={({ value }) => (
-          <TaskStatusBadge status={value as ITask['status']} />
-        )}
+        render={({ value }) => <TaskStatusBadge status={value as ITask['status']} />}
       />
     ),
   },
   {
     accessorKey: 'priority',
     header: ({ column }) => {
-      const filter =
-        (column.getFilterValue() as Set<TaskPriority>) || new Set();
+      const filter = (column.getFilterValue() as Set<TaskPriority>) || new Set();
       return (
         <DataTableColumnHeader column={column} title={taskLabels.priority}>
           <DropdownMenuSeparator />
@@ -144,9 +122,7 @@ export const columns: ColumnDef<ITask>[] = [
         row={row}
         {...rest}
         options={Object.values(TaskPriority)}
-        render={({ value }) => (
-          <TaskPriorityBadge priority={value as ITask['priority']} />
-        )}
+        render={({ value }) => <TaskPriorityBadge priority={value as ITask['priority']} />}
       />
     ),
   },
@@ -189,23 +165,15 @@ export const columns: ColumnDef<ITask>[] = [
   //   },
   {
     accessorKey: 'createdAt',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={taskLabels.createdAt} />
-    ),
+    header: ({ column }) => <DataTableColumnHeader column={column} title={taskLabels.createdAt} />,
     cell: ({ row }) => {
       const createdAt = row.getValue('createdAt') as string;
-      return (
-        <div className="text-nowrap">
-          {createdAt && format(new Date(createdAt), 'PP')}
-        </div>
-      );
+      return <div className="text-nowrap">{createdAt && format(new Date(createdAt), 'PP')}</div>;
     },
   },
   {
     accessorKey: 'deadline',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title={taskLabels.deadline} />
-    ),
+    header: ({ column }) => <DataTableColumnHeader column={column} title={taskLabels.deadline} />,
     cell: ({ row, ...rest }) => <CellDatePicker row={row} {...rest} />,
   },
   {

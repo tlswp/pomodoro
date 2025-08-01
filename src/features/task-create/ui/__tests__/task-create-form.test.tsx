@@ -20,12 +20,8 @@ vi.mock('@/entities/task', () => ({
     HIGH: 'high',
   },
   TaskStatusBadge: ({ status }: { status: string }) => <div>{status}</div>,
-  TaskPriorityBadge: ({ priority }: { priority: string }) => (
-    <div>{priority}</div>
-  ),
-  useTaskStore: (
-    selector: (state: { addTask: typeof addTaskMock }) => unknown
-  ) => selector({ addTask: addTaskMock }),
+  TaskPriorityBadge: ({ priority }: { priority: string }) => <div>{priority}</div>,
+  useTaskStore: (selector: (state: { addTask: typeof addTaskMock }) => unknown) => selector({ addTask: addTaskMock }),
 }));
 
 describe('TaskCreateForm Unit Tests', () => {
@@ -35,12 +31,8 @@ describe('TaskCreateForm Unit Tests', () => {
 
   it('renders all form fields', () => {
     render(<TaskCreateForm />);
-    expect(
-      screen.getByPlaceholderText(/enter task title/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByPlaceholderText(/enter task description/i)
-    ).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/enter task title/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/enter task description/i)).toBeInTheDocument();
     expect(screen.getByText(/pick a date/i)).toBeInTheDocument();
   });
 
@@ -55,9 +47,7 @@ describe('TaskCreateForm Unit Tests', () => {
 
     render(<TaskCreateForm defaultValues={defaultValues} />);
     expect(screen.getByDisplayValue(defaultValues.title)).toBeInTheDocument();
-    expect(
-      screen.getByDisplayValue(defaultValues.description)
-    ).toBeInTheDocument();
+    expect(screen.getByDisplayValue(defaultValues.description)).toBeInTheDocument();
     expect(screen.getByText(defaultValues.status)).toBeInTheDocument();
     expect(screen.getByText(defaultValues.priority)).toBeInTheDocument();
     expect(screen.getByText('June 10th, 2025')).toBeInTheDocument();
@@ -77,9 +67,7 @@ describe('TaskCreateForm Unit Tests', () => {
     );
 
     expect(screen.getByPlaceholderText(/enter task title/i)).toBeDisabled();
-    expect(
-      screen.getByPlaceholderText(/enter task description/i)
-    ).toBeDisabled();
+    expect(screen.getByPlaceholderText(/enter task description/i)).toBeDisabled();
     expect(screen.getByRole('combobox', { name: /status/i })).toBeDisabled();
     expect(screen.getByRole('button', { name: /deadline/i })).toBeDisabled();
   });
@@ -87,9 +75,7 @@ describe('TaskCreateForm Unit Tests', () => {
   it('submits form and calls addTask with correct data', async () => {
     render(<TaskCreateForm onOpenChange={vi.fn()} />);
     const titleInput = screen.getByPlaceholderText(/enter task title/i);
-    const descriptionInput = screen.getByPlaceholderText(
-      /enter task description/i
-    );
+    const descriptionInput = screen.getByPlaceholderText(/enter task description/i);
     const submitButton = screen.getByRole('button', { name: /add task/i });
 
     await userEvent.clear(titleInput);

@@ -1,8 +1,4 @@
-export const formatNumber = (
-  value: string | number,
-  min: number,
-  max: number
-) => {
+export const formatNumber = (value: string | number, min: number, max: number) => {
   const number = Number(value);
 
   if (isNaN(number)) {

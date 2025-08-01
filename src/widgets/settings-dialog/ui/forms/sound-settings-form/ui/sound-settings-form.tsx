@@ -5,14 +5,7 @@ import { useSoundSettingsStore } from '@/entities/settings';
 import { SoundSelect } from '@/entities/sound';
 import { clickSoundList } from '@/shared/config/sounds/click-sounds';
 import { notifySoundList } from '@/shared/config/sounds/notify-sounds';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-} from '@/shared/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/shared/ui/form';
 import { Switch } from '@/shared/ui/switch';
 
 const SoundSettingsForm = () => {
@@ -46,21 +39,13 @@ const SoundSettingsForm = () => {
           control={form.control}
           name="enabled"
           render={({ field }) => (
-            <FormItem
-              className="flex flex-row items-center justify-between gap-5
-                rounded-lg"
-            >
+            <FormItem className="flex flex-row items-center justify-between gap-5 rounded-lg">
               <div className="space-y-0.5">
                 <FormLabel>Enable Sounds</FormLabel>
-                <FormDescription>
-                  Toggle all app sounds on or off with a single switch.
-                </FormDescription>
+                <FormDescription>Toggle all app sounds on or off with a single switch.</FormDescription>
               </div>
               <FormControl>
-                <Switch
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
+                <Switch checked={field.value} onCheckedChange={field.onChange} />
               </FormControl>
             </FormItem>
           )}
@@ -69,22 +54,13 @@ const SoundSettingsForm = () => {
           control={form.control}
           name="click.enabled"
           render={({ field }) => (
-            <FormItem
-              className="flex flex-row items-center justify-between gap-5
-                rounded-lg"
-            >
+            <FormItem className="flex flex-row items-center justify-between gap-5 rounded-lg">
               <div className="space-y-0.5">
                 <FormLabel>Click</FormLabel>
-                <FormDescription>
-                  Choose a sound to play for button clicks or interactions.
-                </FormDescription>
+                <FormDescription>Choose a sound to play for button clicks or interactions.</FormDescription>
               </div>
               <FormControl>
-                <Switch
-                  disabled={!form.watch('enabled')}
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
+                <Switch disabled={!form.watch('enabled')} checked={field.value} onCheckedChange={field.onChange} />
               </FormControl>
             </FormItem>
           )}
@@ -106,23 +82,15 @@ const SoundSettingsForm = () => {
           control={form.control}
           name="notification.enabled"
           render={({ field }) => (
-            <FormItem
-              className="flex flex-row items-center justify-between gap-5
-                rounded-lg"
-            >
+            <FormItem className="flex flex-row items-center justify-between gap-5 rounded-lg">
               <div className="space-y-0.5">
                 <FormLabel>Notification</FormLabel>
                 <FormDescription>
-                  Choose a sound to play for notifications, marking the start or
-                  end of sessions.
+                  Choose a sound to play for notifications, marking the start or end of sessions.
                 </FormDescription>
               </div>
               <FormControl>
-                <Switch
-                  disabled={!form.watch('enabled')}
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
+                <Switch disabled={!form.watch('enabled')} checked={field.value} onCheckedChange={field.onChange} />
               </FormControl>
             </FormItem>
           )}
@@ -132,9 +100,7 @@ const SoundSettingsForm = () => {
           name="notification.selectedSound"
           render={({ field }) => (
             <SoundSelect
-              disabled={
-                !form.watch('notification.enabled') || !form.watch('enabled')
-              }
+              disabled={!form.watch('notification.enabled') || !form.watch('enabled')}
               value={field.value}
               onChange={field.onChange}
               soundList={notifySoundList}

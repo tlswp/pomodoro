@@ -1,11 +1,4 @@
-import {
-  addDays,
-  format,
-  isBefore,
-  isWithinInterval,
-  parseISO,
-  startOfToday,
-} from 'date-fns';
+import { addDays, format, isBefore, isWithinInterval, parseISO, startOfToday } from 'date-fns';
 import React, { useMemo } from 'react';
 
 import type { ITask } from '@/entities/task';
@@ -18,9 +11,7 @@ interface ITaskBentoWidgetProps {
   right?: React.ReactNode;
 }
 
-export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
-  right,
-}) => {
+export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({ right }) => {
   const tasks = useTaskStore((state) => state.tasks);
 
   const today = startOfToday();
@@ -44,10 +35,7 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
     return tasks.filter((task) => {
       if (!task.deadline) return false;
       const deadline = parseISO(task.deadline);
-      return (
-        isWithinInterval(deadline, { start: today, end: oneWeekFromNow }) &&
-        task.status !== TaskStatus.CANCELED
-      );
+      return isWithinInterval(deadline, { start: today, end: oneWeekFromNow }) && task.status !== TaskStatus.CANCELED;
     }).length;
   }, [tasks, today, oneWeekFromNow]);
 
@@ -56,11 +44,7 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
     return tasks.filter((task) => {
       if (!task.deadline) return false;
       const deadline = parseISO(task.deadline);
-      return (
-        isBefore(deadline, today) &&
-        task.status !== TaskStatus.COMPLETED &&
-        task.status !== TaskStatus.CANCELED
-      );
+      return isBefore(deadline, today) && task.status !== TaskStatus.COMPLETED && task.status !== TaskStatus.CANCELED;
     }).length;
   }, [tasks, today]);
 
@@ -72,10 +56,7 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
   // 5. Next due task
   const nextDueTask = useMemo<ITask | null>(() => {
     const active = tasks.filter(
-      (task) =>
-        task.deadline &&
-        task.status !== TaskStatus.COMPLETED &&
-        task.status !== TaskStatus.CANCELED
+      (task) => task.deadline && task.status !== TaskStatus.COMPLETED && task.status !== TaskStatus.CANCELED
     );
     if (active.length === 0) return null;
     const sorted = [...active].sort((a, b) => {
@@ -101,18 +82,12 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
 
   // 7. Progress
   const totalCount = tasks.length;
-  const completedCount = tasks.filter(
-    (t) => t.status === TaskStatus.COMPLETED
-  ).length;
-  const progressPercentage =
-    totalCount === 0 ? 0 : Math.round((completedCount / totalCount) * 100);
+  const completedCount = tasks.filter((t) => t.status === TaskStatus.COMPLETED).length;
+  const progressPercentage = totalCount === 0 ? 0 : Math.round((completedCount / totalCount) * 100);
 
   // 8. High Priority
   const highPriorityCount = useMemo(() => {
-    return tasks.filter(
-      (t) =>
-        t.priority === TaskPriority.HIGH && t.status !== TaskStatus.CANCELED
-    ).length;
+    return tasks.filter((t) => t.priority === TaskPriority.HIGH && t.status !== TaskStatus.CANCELED).length;
   }, [tasks]);
 
   // 9. In Progress
@@ -127,12 +102,8 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
 
   return (
     <div className="space-y-4">
-      <div
-        className="flex flex-col items-center justify-between gap-4 sm:flex-row"
-      >
-        <h3 className="text-3xl font-semibold leading-none tracking-tight">
-          Tasks Info
-        </h3>
+      <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <h3 className="text-3xl leading-none font-semibold tracking-tight">Tasks Info</h3>
         {right}
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -181,12 +152,8 @@ export const TasksBentoWidget: React.FC<ITaskBentoWidgetProps> = ({
           <CardContent>
             {nextDueTask ? (
               <div>
-                <p className="font-medium">
-                  {nextDueTask.title || 'Untitled task'}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Due: {format(parseISO(nextDueTask.deadline!), 'PPP')}
-                </p>
+                <p className="font-medium">{nextDueTask.title || 'Untitled task'}</p>
+                <p className="text-muted-foreground text-sm">Due: {format(parseISO(nextDueTask.deadline!), 'PPP')}</p>
               </div>
             ) : (
               <p>No upcoming tasks.</p>

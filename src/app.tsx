@@ -8,16 +8,9 @@ import { SettingsDialog } from './widgets/settings-dialog';
 const App = () => {
   return (
     <>
-      <div
-        className="container relative my-2 flex w-full items-center
-          justify-between"
-      >
+      <div className="relative container mx-auto my-2 flex w-full items-center justify-between">
         <div className="md:w-1/3">
-          <img
-            className="size-8"
-            src={`${import.meta.env.VITE_BASE_URL}logo/abstract.svg`}
-            alt="logo"
-          />
+          <img className="size-8" src={`${import.meta.env.VITE_BASE_URL}logo/abstract.svg`} alt="logo" />
         </div>
         <NavMenu />
         <div className="flex justify-end md:w-1/3">

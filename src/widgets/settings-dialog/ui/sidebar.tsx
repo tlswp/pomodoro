@@ -19,9 +19,7 @@ export function SettingsSidebar() {
   return (
     <Sidebar collapsible="icon" className="h-full">
       <DialogTitle className="sr-only md:hidden">Settings Sidebar</DialogTitle>
-      <DialogDescription className="sr-only md:hidden">
-        Select a menu item to proceed
-      </DialogDescription>
+      <DialogDescription className="sr-only md:hidden">Select a menu item to proceed</DialogDescription>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Settings</SidebarGroupLabel>

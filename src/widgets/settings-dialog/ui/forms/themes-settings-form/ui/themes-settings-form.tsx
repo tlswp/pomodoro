@@ -1,17 +1,10 @@
-import { RadioGroup } from '@radix-ui/react-radio-group';
+import { RadioGroup } from 'radix-ui';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useThemeSettingsStore } from '@/entities/settings/model';
 import { ThemeMode } from '@/shared/config/theme-mode';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-} from '@/shared/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/shared/ui/form';
 import { Tabs, TabsList, TabsTrigger } from '@/shared/ui/tabs';
 
 import { themePreviewList } from '../config';
@@ -39,16 +32,10 @@ const ThemesSettingsForm = () => {
           control={form.control}
           name="mode"
           render={({ field }) => (
-            <FormItem
-              className="flex flex-col rounded-lg md:flex-row md:items-center
-                md:justify-between"
-            >
+            <FormItem className="flex flex-col rounded-lg md:flex-row md:items-center md:justify-between">
               <div className="space-y-0.5">
                 <FormLabel>Select Theme Mode</FormLabel>
-                <FormDescription>
-                  Choose between light, dark, or system mode to suit your
-                  preference.
-                </FormDescription>
+                <FormDescription>Choose between light, dark, or system mode to suit your preference.</FormDescription>
               </div>
               <FormControl>
                 <Tabs value={field.value} onValueChange={field.onChange}>
@@ -69,13 +56,10 @@ const ThemesSettingsForm = () => {
             <FormItem className="flex flex-col rounded-lg">
               <div className="space-y-0.5">
                 <FormLabel>Select Theme</FormLabel>
-                <FormDescription>
-                  Pick a timer style that matches your vibe and keeps you
-                  motivated.
-                </FormDescription>
+                <FormDescription>Pick a timer style that matches your vibe and keeps you motivated.</FormDescription>
               </div>
               <FormControl>
-                <RadioGroup
+                <RadioGroup.RadioGroup
                   value={field.value}
                   onValueChange={(value) => {
                     field.onChange(value);
@@ -83,13 +67,9 @@ const ThemesSettingsForm = () => {
                   className="mt-9 flex flex-wrap gap-4"
                 >
                   {themePreviewList.map((theme) => (
-                    <ThemeItem
-                      selected={theme.value === field.value}
-                      key={theme.value}
-                      {...theme}
-                    />
+                    <ThemeItem selected={theme.value === field.value} key={theme.value} {...theme} />
                   ))}
-                </RadioGroup>
+                </RadioGroup.RadioGroup>
               </FormControl>
             </FormItem>
           )}

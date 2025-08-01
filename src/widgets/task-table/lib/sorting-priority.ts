@@ -3,11 +3,7 @@ import type { Row } from '@tanstack/react-table';
 import type { ITask } from '@/entities/task';
 import { TaskPriority } from '@/entities/task';
 
-export const sortingPriority = (
-  rowA: Row<ITask>,
-  rowB: Row<ITask>,
-  columnId: string
-) => {
+export const sortingPriority = (rowA: Row<ITask>, rowB: Row<ITask>, columnId: string) => {
   const a = rowA.getValue(columnId) as ITask['priority'];
   const b = rowB.getValue(columnId) as ITask['priority'];
   let aNumber = 0;

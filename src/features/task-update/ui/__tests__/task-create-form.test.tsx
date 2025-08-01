@@ -37,15 +37,9 @@ vi.mock('@/entities/task', () => ({
     HIGH: 'high',
   },
   TaskStatusBadge: ({ status }: { status: string }) => <div>{status}</div>,
-  TaskPriorityBadge: ({ priority }: { priority: string }) => (
-    <div>{priority}</div>
-  ),
-  useTaskStore: (
-    selector: (state: {
-      updateTask: typeof updateTaskMock;
-      tasks: (typeof sampleTask)[];
-    }) => unknown
-  ) => selector({ updateTask: updateTaskMock, tasks: [sampleTask] }),
+  TaskPriorityBadge: ({ priority }: { priority: string }) => <div>{priority}</div>,
+  useTaskStore: (selector: (state: { updateTask: typeof updateTaskMock; tasks: (typeof sampleTask)[] }) => unknown) =>
+    selector({ updateTask: updateTaskMock, tasks: [sampleTask] }),
 }));
 
 describe('TaskUpdateForm Unit Tests', () => {
@@ -56,9 +50,7 @@ describe('TaskUpdateForm Unit Tests', () => {
   it('renders form with pre-filled values', () => {
     render(<TaskUpdateForm id="task-1" />);
     expect(screen.getByDisplayValue(sampleTask.title)).toBeInTheDocument();
-    expect(
-      screen.getByDisplayValue(sampleTask.description)
-    ).toBeInTheDocument();
+    expect(screen.getByDisplayValue(sampleTask.description)).toBeInTheDocument();
     expect(screen.getByText(sampleTask.status)).toBeInTheDocument();
     expect(screen.getByText(sampleTask.priority)).toBeInTheDocument();
     expect(screen.getByText('July 15th, 2023')).toBeInTheDocument();

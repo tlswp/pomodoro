@@ -1,10 +1,5 @@
 export { TimerPresetsConfig } from './config';
-export type {
-  INotificationSettings,
-  ISoundSettings,
-  IThemeSettings,
-  ITimerSettings,
-} from './model';
+export type { INotificationSettings, ISoundSettings, IThemeSettings, ITimerSettings } from './model';
 export {
   resetSettings,
   useNotifySettingsStore,

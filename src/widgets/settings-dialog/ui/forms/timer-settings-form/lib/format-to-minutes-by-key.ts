@@ -1,9 +1,6 @@
 import type { ITimerSettings } from '@/entities/settings';
 
-export const formatToMinutesByKey = (
-  key: keyof ITimerSettings,
-  value: ITimerSettings[keyof ITimerSettings]
-) => {
+export const formatToMinutesByKey = (key: keyof ITimerSettings, value: ITimerSettings[keyof ITimerSettings]) => {
   switch (key) {
     case 'session':
     case 'longBreak':

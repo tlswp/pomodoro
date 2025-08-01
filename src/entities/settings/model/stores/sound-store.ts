@@ -7,10 +7,7 @@ import type { ISoundSettings } from '../type';
 interface ISoundSettingsStore {
   soundSettings: ISoundSettings;
   updateSoundSettings: (settings: Partial<ISoundSettings>) => void;
-  updateSoundByType: (
-    type: 'click' | 'notification',
-    settings: Partial<ISoundTypeSettings>
-  ) => void;
+  updateSoundByType: (type: 'click' | 'notification', settings: Partial<ISoundTypeSettings>) => void;
 }
 
 export const useSoundSettingsStore = create<ISoundSettingsStore>()(

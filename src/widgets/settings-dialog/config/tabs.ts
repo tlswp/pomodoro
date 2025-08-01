@@ -1,10 +1,4 @@
-import {
-  BellIcon,
-  ClockIcon,
-  DatabaseIcon,
-  ImageIcon,
-  MusicIcon,
-} from 'lucide-react';
+import { BellIcon, ClockIcon, DatabaseIcon, ImageIcon, MusicIcon } from 'lucide-react';
 
 import type { ISettingsTab } from '../model';
 import { SettingsTab } from '../model';
@@ -37,6 +31,7 @@ export const tabsConfig: ISettingsTab[] = [
   },
 ];
 
-export const tabsConfigObject = Object.fromEntries(
-  tabsConfig.map((item) => [item.key, item])
-) as Record<SettingsTab, ISettingsTab>;
+export const tabsConfigObject = Object.fromEntries(tabsConfig.map((item) => [item.key, item])) as Record<
+  SettingsTab,
+  ISettingsTab
+>;

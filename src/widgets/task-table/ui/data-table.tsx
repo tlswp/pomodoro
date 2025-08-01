@@ -1,12 +1,6 @@
 'use client';
 
-import type {
-  ColumnDef,
-  ColumnFiltersState,
-  RowData,
-  SortingState,
-  VisibilityState,
-} from '@tanstack/react-table';
+import type { ColumnDef, ColumnFiltersState, RowData, SortingState, VisibilityState } from '@tanstack/react-table';
 import {
   flexRender,
   getCoreRowModel,
@@ -27,14 +21,7 @@ import {
   DropdownMenuTrigger,
 } from '@/shared/ui/dropdown-menu';
 import { Input } from '@/shared/ui/input';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/shared/ui/table';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/ui/table';
 
 function useSkipper() {
   const shouldSkipRef = React.useRef(true);
@@ -64,20 +51,11 @@ interface DataTableProps<TData, TValue> {
   updateData: (rowIndex: number, columnId: string, value: unknown) => void;
 }
 
-export function DataTable<TData, TValue>({
-  columns,
-  data,
-  updateData,
-}: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = React.useState<SortingState>([
-    { id: 'createdAt', desc: true },
-  ]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
+export function DataTable<TData, TValue>({ columns, data, updateData }: DataTableProps<TData, TValue>) {
+  const [sorting, setSorting] = React.useState<SortingState>([{ id: 'createdAt', desc: true }]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
+  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
 
   const [autoResetPageIndex, skipAutoResetPageIndex] = useSkipper();
 
@@ -107,15 +85,11 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <div
-        className="flex flex-col items-center space-y-2 sm:flex-row sm:space-y-0"
-      >
+      <div className="flex flex-col items-center space-y-2 sm:flex-row sm:space-y-0">
         <Input
           placeholder="Enter a title..."
           value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
-          onChange={(event) =>
-            table.getColumn('title')?.setFilterValue(event.target.value)
-          }
+          onChange={(event) => table.getColumn('title')?.setFilterValue(event.target.value)}
           className="w-full sm:max-w-sm"
         />
         <div className="ml-auto flex items-center space-x-2">
@@ -134,9 +108,7 @@ export function DataTable<TData, TValue>({
                       key={column.id}
                       className="capitalize"
                       checked={column.getIsVisible()}
-                      onCheckedChange={(value) =>
-                        column.toggleVisibility(!!value)
-                      }
+                      onCheckedChange={(value) => column.toggleVisibility(!!value)}
                     >
                       {column.id}
                     </DropdownMenuCheckboxItem>
@@ -154,12 +126,7 @@ export function DataTable<TData, TValue>({
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                      {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   );
                 })}
@@ -169,26 +136,15 @@ export function DataTable<TData, TValue>({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
-                >
+                <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
+                    <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
+                <TableCell colSpan={columns.length} className="h-24 text-center">
                   No results.
                 </TableCell>
               </TableRow>

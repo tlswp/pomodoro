@@ -26,10 +26,7 @@ export const Timer = () => {
       const length = path.getTotalLength();
       path.style.transition = 'stroke-dashoffset 2s ease-out';
       path.style.strokeDasharray = length.toString();
-      path.style.strokeDashoffset = (
-        (time.default / session) *
-        length
-      ).toString();
+      path.style.strokeDashoffset = ((time.default / session) * length).toString();
     }
   }, [time.default, session]);
 
@@ -49,11 +46,8 @@ export const Timer = () => {
     <div className="flex flex-col items-center">
       <div className="relative flex items-center justify-center">
         <TimerProgress pathRef={pathRef} />
-        <TimerStatus
-          status="FOCUS"
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <TimerCounter time={time.formatted} className="mb-[18px] mt-[27px]" />
+        <TimerStatus status="FOCUS" className="absolute inset-0 flex items-center justify-center">
+          <TimerCounter time={time.formatted} className="mt-[27px] mb-[18px]" />
         </TimerStatus>
       </div>
       <Button onClick={handleTimerStart}>Start</Button>

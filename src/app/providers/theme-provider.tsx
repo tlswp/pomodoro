@@ -30,9 +30,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
       document.body.classList.add(themeClasses[themeSettings.theme]);
 
-      Object.values(themeModeConfig).forEach((modeClass) =>
-        document.body.classList.remove(modeClass)
-      );
+      Object.values(themeModeConfig).forEach((modeClass) => document.body.classList.remove(modeClass));
 
       if (themeSettings.mode === ThemeMode.SYSTEM) {
         document.body.classList.add(themeModeConfig[getSystemTheme()]);

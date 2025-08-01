@@ -22,7 +22,7 @@ The Pomodoro Timer helps you stay focused and manage your time effectively. Plan
 - **Framework:** React 18
 - **Language:** TypeScript
 - **Build Tool:** Vite
-- **Styling:** Tailwind CSS
+- **Styling:** Tailwind CSS v4
 - **UI Components:** shadcn/ui
 - **State Management:** Zustand
 - **Form Handling:** React Hook Form + Zod
@@ -47,26 +47,26 @@ cd pomodoro
 2. Install dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 3. Start the development server
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ## Available Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm test` - Run tests
-- `npm run test:ui` - Run tests with UI
-- `npm run test:coverage` - Run tests with coverage report
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Fix ESLint errors
-- `npm run format` - Format code with Prettier
+- `pnpm run dev` - Start development server
+- `pnpm run build` - Build for production
+- `pnpm run preview` - Preview production build
+- `pnpm test` - Run tests
+- `pnpm run test:ui` - Run tests with UI
+- `pnpm run test:coverage` - Run tests with coverage report
+- `pnpm run lint` - Run ESLint
+- `pnpm run lint:fix` - Fix ESLint errors
+- `pnpm run format` - Format code with Prettier
 
 ## Architecture
 
@@ -98,7 +98,7 @@ This helps maintain a clean architecture and prevents circular dependencies.
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes using conventional commits (`npm run commit`)
+3. Commit your changes using conventional commits (`pnpm run commit`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 

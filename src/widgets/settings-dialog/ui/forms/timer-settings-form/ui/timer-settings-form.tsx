@@ -5,14 +5,7 @@ import type { ITimerSettings } from '@/entities/settings';
 import { TimerPresetsConfig, useTimerSettingsStore } from '@/entities/settings';
 import { TimerPresets } from '@/shared/config/timer-presets';
 import { timerPresetsLabels } from '@/shared/config/timer-presets';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-} from '@/shared/ui/form';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/shared/ui/form';
 import { ScrollArea, ScrollBar } from '@/shared/ui/scroll-area';
 import { Switch } from '@/shared/ui/switch';
 import { Tabs, TabsList, TabsTrigger } from '@/shared/ui/tabs';
@@ -33,9 +26,7 @@ const TimerSettingsForm = () => {
 
   useEffect(() => {
     const { unsubscribe } = form.watch((data) => {
-      updateTimerSettings(
-        formatToMs({ ...formatToMinutes(timerSettings), ...data })
-      );
+      updateTimerSettings(formatToMs({ ...formatToMinutes(timerSettings), ...data }));
     });
 
     return () => unsubscribe();
@@ -60,8 +51,7 @@ const TimerSettingsForm = () => {
                 <div className="space-y-0.5">
                   <FormLabel>Preset</FormLabel>
                   <FormDescription>
-                    Choose a predefined timer setup or customize your own
-                    Pomodoro cycle.
+                    Choose a predefined timer setup or customize your own Pomodoro cycle.
                   </FormDescription>
                 </div>
               </div>
@@ -71,9 +61,7 @@ const TimerSettingsForm = () => {
                   value={field.value}
                   onValueChange={(value) => {
                     field.onChange(value);
-                    Object.entries(
-                      TimerPresetsConfig[value as TimerPresets] || {}
-                    ).map(([key, data]) => {
+                    Object.entries(TimerPresetsConfig[value as TimerPresets] || {}).map(([key, data]) => {
                       form.setValue(
                         key as keyof ITimerSettings,
                         formatToMinutesByKey(key as keyof ITimerSettings, data)
@@ -84,13 +72,11 @@ const TimerSettingsForm = () => {
                   <ScrollArea className="w-full rounded-lg">
                     <ScrollBar orientation="horizontal" className="hidden" />
                     <TabsList>
-                      {Object.entries(timerPresetsLabels).map(
-                        ([preset, label]) => (
-                          <TabsTrigger key={preset} value={preset}>
-                            {label}
-                          </TabsTrigger>
-                        )
-                      )}
+                      {Object.entries(timerPresetsLabels).map(([preset, label]) => (
+                        <TabsTrigger key={preset} value={preset}>
+                          {label}
+                        </TabsTrigger>
+                      ))}
                     </TabsList>
                   </ScrollArea>
                 </Tabs>
@@ -102,16 +88,10 @@ const TimerSettingsForm = () => {
           control={form.control}
           name="sessionCount"
           render={({ field }) => (
-            <FormItem
-              className="flex flex-col justify-between rounded-lg md:flex-row
-                md:items-center"
-            >
+            <FormItem className="flex flex-col justify-between rounded-lg md:flex-row md:items-center">
               <div className="space-y-0.5">
                 <FormLabel>Session Count</FormLabel>
-                <FormDescription>
-                  Setting the number of work sessions in one cycle (e.g., 4
-                  sessions).
-                </FormDescription>
+                <FormDescription>Setting the number of work sessions in one cycle (e.g., 4 sessions).</FormDescription>
               </div>
               <FormControl>
                 <NumberInput
@@ -128,15 +108,11 @@ const TimerSettingsForm = () => {
           control={form.control}
           name="session"
           render={({ field }) => (
-            <FormItem
-              className="flex flex-col justify-between rounded-lg md:flex-row
-                md:items-center"
-            >
+            <FormItem className="flex flex-col justify-between rounded-lg md:flex-row md:items-center">
               <div className="space-y-0.5">
                 <FormLabel>Focus Time</FormLabel>
                 <FormDescription>
-                  Adjust the duration of focused work sessions to optimize
-                  productivity (e.g., 25 minutes).
+                  Adjust the duration of focused work sessions to optimize productivity (e.g., 25 minutes).
                 </FormDescription>
               </div>
               <FormControl>
@@ -155,15 +131,11 @@ const TimerSettingsForm = () => {
           control={form.control}
           name="shortBreak"
           render={({ field }) => (
-            <FormItem
-              className="flex flex-col justify-between rounded-lg md:flex-row
-                md:items-center"
-            >
+            <FormItem className="flex flex-col justify-between rounded-lg md:flex-row md:items-center">
               <div className="space-y-0.5">
                 <FormLabel>Short Break Time</FormLabel>
                 <FormDescription>
-                  Set the duration of short breaks between work sessions (e.g.,
-                  5 minutes).
+                  Set the duration of short breaks between work sessions (e.g., 5 minutes).
                 </FormDescription>
               </div>
               <FormControl>
@@ -182,15 +154,11 @@ const TimerSettingsForm = () => {
           control={form.control}
           name="longBreak"
           render={({ field }) => (
-            <FormItem
-              className="flex flex-col justify-between rounded-lg md:flex-row
-                md:items-center"
-            >
+            <FormItem className="flex flex-col justify-between rounded-lg md:flex-row md:items-center">
               <div className="space-y-0.5">
                 <FormLabel>Long Break Time</FormLabel>
                 <FormDescription>
-                  Set the duration of long breaks after a full cycle of sessions
-                  (e.g., 15 minutes).
+                  Set the duration of long breaks after a full cycle of sessions (e.g., 15 minutes).
                 </FormDescription>
               </div>
               <FormControl>
@@ -209,22 +177,13 @@ const TimerSettingsForm = () => {
           control={form.control}
           name="autoPlaySession"
           render={({ field }) => (
-            <FormItem
-              className="flex flex-row items-center justify-between gap-5
-                rounded-lg"
-            >
+            <FormItem className="flex flex-row items-center justify-between gap-5 rounded-lg">
               <div className="space-y-0.5">
                 <FormLabel>Auto Play Session</FormLabel>
-                <FormDescription>
-                  Automatically start the next session after the current one
-                  ends.
-                </FormDescription>
+                <FormDescription>Automatically start the next session after the current one ends.</FormDescription>
               </div>
               <FormControl>
-                <Switch
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
+                <Switch checked={field.value} onCheckedChange={field.onChange} />
               </FormControl>
             </FormItem>
           )}
@@ -233,21 +192,13 @@ const TimerSettingsForm = () => {
           control={form.control}
           name="autoPlayBreak"
           render={({ field }) => (
-            <FormItem
-              className="flex flex-row items-center justify-between gap-5
-                rounded-lg"
-            >
+            <FormItem className="flex flex-row items-center justify-between gap-5 rounded-lg">
               <div className="space-y-0.5">
                 <FormLabel>Auto Play Break</FormLabel>
-                <FormDescription>
-                  Automatically start the next break after the current one ends.
-                </FormDescription>
+                <FormDescription>Automatically start the next break after the current one ends.</FormDescription>
               </div>
               <FormControl>
-                <Switch
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
+                <Switch checked={field.value} onCheckedChange={field.onChange} />
               </FormControl>
             </FormItem>
           )}
