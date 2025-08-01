@@ -16,7 +16,7 @@ interface KanbanCardProps {
   isOverlay?: boolean;
 }
 
-export const KanbanCard: React.FC<KanbanCardProps> = ({ task, columnId, index, isOverlay = false }) => {
+export const KanbanCard: React.FC<KanbanCardProps> = ({ task, columnId, index }) => {
   const { ref } = useSortable({
     id: task.id,
     index,

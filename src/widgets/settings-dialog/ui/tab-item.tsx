@@ -18,12 +18,7 @@ export const TabItem: React.FC<ITabItemProps> = ({ children }) => {
         <SidebarTrigger className="md:hidden" />
         <DialogTitle>{tabsConfigObject[selectedTab].title}</DialogTitle>
       </div>
-      <ScrollArea
-        viewportClassName="pb-4 px-4 md:pl-0"
-        className="-mx-4 mt-4 h-full w-[calc(100%+(--spacing(10)))] md:mx-0 md:w-full"
-      >
-        {children}
-      </ScrollArea>
+      <ScrollArea className="-mx-4 mt-4 h-full w-[calc(100%+(--spacing(10)))] md:mx-0 md:w-full">{children}</ScrollArea>
     </div>
   );
 };

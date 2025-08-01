@@ -9,7 +9,7 @@ import { TimerProgress } from './timer-progress';
 import { TimerStatus } from './timer-status';
 
 export const Timer = () => {
-  const pathRef = useRef<SVGPathElement>(null);
+  const pathRef = useRef<SVGPathElement>(null!);
   const {
     timerSettings: { session },
   } = useTimerSettingsStore();
