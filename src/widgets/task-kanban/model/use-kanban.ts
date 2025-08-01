@@ -1,3 +1,4 @@
+import type { Dispatch } from 'react';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
@@ -11,6 +12,8 @@ interface KanbanStore {
   onTaskOpenChange: (open: boolean) => void;
   setOpenTaskId: (id: string | null) => void;
   order: KanbanOrder;
+
+  setOrder: Dispatch<KanbanOrder | ((prevState: KanbanOrder) => KanbanOrder)>;
 
   setInitialOrder: (statuses: string[]) => void;
 
@@ -37,6 +40,9 @@ export const useKanbanStore = create(
       onTaskOpenChange: (open) => set({ taskOpen: open }),
       setOpenTaskId: (id) => set({ openTaskId: id }),
       order: {},
+
+      setOrder: (order) =>
+        typeof order === 'function' ? set((state) => ({ order: order(state.order) })) : set({ order }),
 
       setInitialOrder: (statuses) => {
         const { order } = get();
