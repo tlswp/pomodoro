@@ -41,9 +41,10 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({ status }) => {
       </div>
 
       <div className="bg-muted flex h-full min-h-64 flex-col gap-2 rounded-2xl p-2">
-        {columnIds.map((id, index) => (
-          <KanbanCard key={id} task={linkedTasks[id]} columnId={status} index={index} />
-        ))}
+        {columnIds.map(
+          (id, index) =>
+            !!linkedTasks[id] && <KanbanCard key={id} task={linkedTasks[id]} columnId={status} index={index} />
+        )}
       </div>
     </div>
   );
