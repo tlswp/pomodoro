@@ -12,7 +12,6 @@ import { KanbanColumn } from './kanban-column';
 import { columns } from './kanban-constants';
 
 export const KanbanBoard: React.FC = () => {
-  const setInitialOrder = useKanbanStore((s) => s.setInitialOrder);
   const { openTaskId, order, taskOpen, onTaskOpenChange, setOrder } = useKanbanStore();
   const updateTask = useTaskStore((s) => s.updateTask);
 
@@ -27,8 +26,28 @@ export const KanbanBoard: React.FC = () => {
   }, [tasks]);
 
   useEffect(() => {
-    setInitialOrder(columns.map((c) => c.id));
-  }, [setInitialOrder]);
+    const orderEntries = Object.entries(order);
+    const orderedIds: Record<string, Set<string>> = {};
+    columns.forEach(({ id }) => {
+      if (!orderedIds[id]) orderedIds[id] = new Set();
+    });
+
+    if (orderEntries.length) {
+      orderEntries.forEach(([status, ids]) => {
+        ids.forEach((id) => linkedTasks[id] && orderedIds[status].add(id));
+      });
+    }
+    tasks.forEach((task) => {
+      orderedIds[task.status].add(task.id);
+    });
+
+    const newOrder: Record<TaskStatus, string[]> = {} as Record<TaskStatus, string[]>;
+
+    for (let { id } of columns) {
+      newOrder[id] = Array.from(orderedIds[id]);
+    }
+    setOrder(newOrder);
+  }, []);
 
   return (
     <DragDropProvider

@@ -18,25 +18,13 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({ status }) => {
 
   const order = useKanbanStore((s) => s.order);
   const columnIds = useMemo(() => order[status] || [], [order, status]);
+  const filtered = useMemo(() => tasks.filter((task) => task.status === status), [tasks, status]);
 
-  const columnTasks = useMemo<ITask[]>(() => {
-    const filtered = tasks.filter((t) => order[status].includes(t.id));
-    const mapTask = new Map<string, ITask>();
-    filtered.forEach((task) => mapTask.set(task.id, task));
-
-    const result: ITask[] = [];
-    columnIds.forEach((id) => {
-      const found = mapTask.get(id);
-      if (found) {
-        result.push(found);
-        mapTask.delete(id);
-      }
-    });
-
-    const leftovers = [...mapTask.values()];
-
-    return [...result, ...leftovers];
-  }, [tasks, status, columnIds, order]);
+  const linkedTasks = useMemo(() => {
+    const linkedTasks: Record<string, ITask> = {};
+    tasks.forEach((task) => (linkedTasks[task.id] = task));
+    return linkedTasks;
+  }, [tasks]);
 
   const { ref } = useDroppable({
     id: status,
@@ -49,12 +37,12 @@ export const KanbanColumn: React.FC<KanbanColumnProps> = ({ status }) => {
     <div ref={ref} className="relative flex w-full min-w-64 flex-col">
       <div className="bg-muted sticky top-0 mb-2 flex items-center justify-between rounded-xl px-2 py-2">
         <TaskStatusBadge status={status} />
-        <Badge variant="default">{columnTasks.length}</Badge>
+        <Badge variant="default">{filtered.length}</Badge>
       </div>
 
       <div className="bg-muted flex h-full min-h-64 flex-col gap-2 rounded-2xl p-2">
-        {columnTasks.map((task, index) => (
-          <KanbanCard key={task.id} task={task} columnId={status} index={index} />
+        {columnIds.map((id, index) => (
+          <KanbanCard key={id} task={linkedTasks[id]} columnId={status} index={index} />
         ))}
       </div>
     </div>
